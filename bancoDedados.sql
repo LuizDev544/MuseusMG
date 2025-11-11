@@ -1,2 +1,2 @@
-create database finalem2;
-use finalem2;
+create database MuseusMG;
+use MuseusMG;
