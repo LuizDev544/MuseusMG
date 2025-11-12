@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel ADM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../FrontEnd/styles/paineladm.css">
+</head>
+
+<body>
+        <div class="top-bar">
+            <div class="container text-center py-4">
+                <header class="mb-3">
+                    <h1 class="display-5 fw-bold texto-laranja">Painel de Administração de Museus</h1>
+                    <p class="lead text-light">
+                        Personalize os Museus locais de São Paulo, organize e atualize as informações conforme necessário.
+                    </p>
+                </header>
+
+                <div class="actions-bar mb-2">
+                    <a href="CadastrarEvento.html" class="btn btn-light btn-action shadow-sm">
+                        <i data-feather="plus-circle"></i> Cadastrar Museus
+                    </a>
+                    <a href="ExcluirEvento.html" class="btn btn-warning btn-action shadow-sm">
+                        <i data-feather="trash-2"></i> Excluir Museus
+                    </a>
+                    <a href="ConsultarEvento.html" class="btn btn-dark btn-action shadow-sm">
+                        <i data-feather="search"></i> Consultar Museus
+                    </a>
+                    <button onclick="logout()" class="btn btn-outline-light">Sair</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🖼️ Imagem de fundo logo abaixo -->
+        <section class="hero-image"></section>
+
+        <div class="container py-4 dashboard-container">
+            <div class="card shadow-sm">
+                <div class="card-header custom-orange">
+                    Lista de Museus Cadastrados
+                </div>
+                <div class="card-body p-0 table-responsive">
+                    <div class="card-body p-0 table-responsive">
+                        <table class="table table-striped table-hover mb-0" id="tabelaEventos">
+                            <thead class="custom-header">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Museu</th>
+                                    <th>Descrição</th>
+                                    <th>Hora Entrada</th>
+                                    <th>Hora Saida</th>
+                                    <th>Tema</th>
+                                    <th>Capacidade</th>
+                                    <th>Fundação</th>
+                                    <th>Endereço</th>
+                                    <th>Preço</th>
+                                    <th class="text-center">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+
+                        <form id="formEdicao">
+                            <button type="button" class="btn-close-form" onclick="fecharFormulario()">×</button>
+                            <h5 class="mb-3" style="color: #e2ad7c;">✏️ Editar Museu</h5>
+                            
+                            <input type="hidden" id="inputId" name="id">
+                    
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="inputNome" class="form-label">Nome do Museu:</label>
+                                    <input type="text" id="inputNome" name="Museu" class="form-control" required>
+                                </div>
+                                <div class="col-md-7">
+                                    <label for="inputDescricao" class="form-label">Descrição:</label>
+                                    <input type="text" id="inputDescricao" name="DescricaoMuseu" class="form-control">
+                                </div>
+                                <div class="col-md-1">
+                                    <label for="inputEntrada" class="form-label">Hora de Entrada:</label>
+                                    <input type="text" id="InputEntrada" name="HorarioAbrir" class="form-control">
+                                </div>
+                            </div>
+                    
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-2">
+                                    <label for="inputSaida" class="form-label">Hora de Saida:</label>
+                                    <input type="date" id="inputSaida" name="HoraioSair" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputTema" class="form-label">Tema:</label>
+                                    <input type="text" id="inputTema" name="Tema" class="form-control" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="inputCapacidade" class="form-label">Capacidade:</label>
+                                    <input type="number" step="0.01" id="inputCapacidade" name="Capacidade" class="form-control">
+                                </div>
+                            </div>
+                    
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-1">
+                                    <label for="inputFundacao" class="form-label">Fundação:</label>
+                                    <input type="number" id="inputFundacao" name="Fundacao" class="form-control">
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="inputEndereco" class="form-label">Endereço:</label>
+                                    <input type="text" id="inputEndereco" name="Endereco" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputPreco" class="form-label">Preço:</label>
+                                    <input type="text" id="inputPreco" name="Preco" class="form-control">
+                                </div>
+                            </div>
+                    
+                            <div class="mt-3 text-center">
+                                <button type="submit" class="btn btn-success me-2">✅ Salvar Alterações</button>
+                                <button type="button" class="btn btn-secondary" onclick="fecharFormulario()">❌ Cancelar</button>
+                                <div id="msgEdicao" class="mt-3"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script> 
+        feather.replace(); 
+
+        function fecharFormulario() {
+            document.getElementById('formEdicao').classList.remove('show');
+            document.getElementById('overlay').classList.remove('show');
+        }
+
+        function logout() {
+            localStorage.removeItem('jwtToken');
+            localStorage.removeItem('userData');
+            window.location.href = "Login.html";
+        }
+    </script>
+    <script src="../Front-end-Evento/scripts/Editar.js"></script>
+</body>
+
+</html>
