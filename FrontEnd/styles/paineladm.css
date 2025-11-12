@@ -14,7 +14,7 @@ body {
   left: 0;
   width: 260px;
   height: 100vh;
-  background-color: #c59467;
+  background-color: #815a36;
   color: white;
   padding: 2rem 1rem;
   box-shadow: 4px 0 12px rgba(0, 0, 0, 0.2);
@@ -269,7 +269,7 @@ thead.custom-header {
   .thumb {
     display: inline-block;
     width: 200px;
-    height: 200px;
+    height: 300px;
     overflow: hidden;
   }
 
