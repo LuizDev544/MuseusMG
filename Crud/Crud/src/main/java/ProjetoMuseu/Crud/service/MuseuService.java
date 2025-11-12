@@ -37,6 +37,7 @@ public class MuseuService {
         return museuRepository.findById(id);
     }
 
+<<<<<<< Updated upstream
     public Museu atualizarEvento(int id, Museu MuseuAtualizado) {
         return museuRepository.findById(id).map(museu -> {
             museu.setMuseu(MuseuAtualizado.getMuseu());
@@ -51,4 +52,7 @@ public class MuseuService {
             return museuRepository.save(MuseuAtualizado);
         }).orElseThrow(() -> new RuntimeException("Evento não encontrado"));
     }
+=======
+        // Criar a porra do atualizar o museu
+>>>>>>> Stashed changes
 }
