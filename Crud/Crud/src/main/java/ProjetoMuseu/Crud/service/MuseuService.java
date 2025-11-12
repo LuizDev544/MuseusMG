@@ -36,4 +36,19 @@ public class MuseuService {
     public Optional <Museu> getMuseuService(Integer id){
         return museuRepository.findById(id);
     }
+
+    public Museu atualizarEvento(int id, Museu MuseuAtualizado) {
+        return museuRepository.findById(id).map(museu -> {
+            museu.setMuseu(MuseuAtualizado.getMuseu());
+            museu.setDescricaomuseu(MuseuAtualizado.getDescricaomuseu());
+            museu.setDataDoEvento(MuseuAtualizado.getDataDoEvento());
+            museu.setLocalDoEvento(MuseuAtualizado.getLocalDoEvento());
+            museu.setPrecoDoEvento(MuseuAtualizado.getPrecoDoEvento());
+            museu.setCapacidadeDePessoasNoEvento(MuseuAtualizado.getCapacidadeDePessoasNoEvento());
+            museu.setTipoDoEvento(MuseuAtualizado.getTipoDoEvento());
+            museu.setApresentadorDoEvento(MuseuAtualizado.getApresentadorDoEvento());
+            museu.setDuracaoDoEvento(MuseuAtualizado.getDuracaoDoEvento());
+            return museuRepository.save(MuseuAtualizado);
+        }).orElseThrow(() -> new RuntimeException("Evento não encontrado"));
+    }
 }
