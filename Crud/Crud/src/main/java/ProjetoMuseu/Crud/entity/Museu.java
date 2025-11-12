@@ -28,10 +28,10 @@ public class Museu {
     private String descricaomuseu;
     @Column(name="HorarioAbrir")
     private String horaioabrir;
-    @Column(name="HoraioSair")
+    @Column(name="HorairoSair")
     private String horaiosair;
     @Column(name="Tema")
-    private double tema;
+    private String tema;
     @Column(name="Capacidade")
     private int capacidade;
     @Column(name="Fundacao")
@@ -39,5 +39,5 @@ public class Museu {
     @Column(name = "Endereco")
     private String endereco;
     @Column(name="Preco")
-    private String preco;
+    private Double preco;
 }
