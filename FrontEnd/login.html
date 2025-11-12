@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="../FrontEnd/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - ArtFinder</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+<div class="login-container">
+<h1>Bem-vindo ao ArtFinder</h1>
+<form id="loginForm" onsubmit="return login(event)">
+<input type="email" id="email" placeholder="E-mail" required>
+<input type="password" id="senha" placeholder="Senha" required>
+<button type="submit">Entrar</button>
+<div class="login-links">
+<a href="#">Esqueceu sua senha?</a>
+<a href="#">Criar Conta</a>
+</div>
+</form>
+</div>
+</body>
+<script src="app.js"></script>
+</html>

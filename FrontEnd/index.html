@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+</header>
+
+<link rel="stylesheet" href="../FrontEnd/style.css">
+<section class="hero">
+<h1>Encontre a Próxima Grande Exposição</h1>
+<div class="search-bar">
+<input type="text" id="searchInput" placeholder="Buscar por Museu, Artista ou Cidade...">
+<button onclick="search()">🔍</button>
+</div>
+</section>
+
+
+<section class="filters">
+<select id="categoriaFilter">
+<option value="">Categoria</option>
+<option value="Arte">Arte</option>
+<option value="História">História</option>
+<option value="Ciência">Ciência</option>
+</select>
+<select id="cidadeFilter">
+<option value="">Cidade</option>
+<option value="São Paulo">São Paulo</option>
+<option value="Rio de Janeiro">Rio de Janeiro</option>
+<option value="Curitiba">Curitiba</option>
+</select>
+<select id="statusFilter">
+<option value="">Status</option>
+<option value="Em Cartaz">Em Cartaz</option>
+<option value="Em Breve">Em Breve</option>
+</select>
+<button class="btn-filtrar" onclick="applyFilters()">Filtrar</button>
+</section>
+
+
+<section id="exposicoes" class="grid-container"></section>
+
+
+<section class="destaque">
+<h2>Em Destaque</h2>
+<div class="carousel" id="carousel"></div>
+</section>
+
+
+<footer class="footer">
+<p>© 2025 ArtFinder | Portal de Museus e Exposições</p>
+<div class="social-icons">
+<a href="#">🐦</a>
+<a href="#">📸</a>
+<a href="#">📘</a>
+</div>
+</footer>
+
+
+<script src="app.js"></script>
+</body>
+</html>
