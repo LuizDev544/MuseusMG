@@ -1,26 +1,60 @@
-/* 🌄 Fundo geral com imagem atrás das tabelas */
 body {
-  background-image: url('../Imagens/ImagemFundoADM.jpg'); /* caminho da imagem */
+  background-image: url('../Imagens/ImagemFundoADM.jpg'); 
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* faz o fundo "ficar parado" enquanto rola */
+  background-attachment: fixed;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* 🔶 Barra superior sólida */
 .top-bar {
-  background-color: #c59467; /* cor sólida */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background-color: #c59467;
   color: white;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  padding: 2rem 1rem;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 1000;
 }
 
-/* Deixa o texto claro dentro da barra */
 .top-bar h1,
 .top-bar p {
   color: white;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.25);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1rem;
+}
+
+.top-bar h1 {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.top-bar p {
+  font-size: 0.9rem;
+  line-height: 1.3rem;
+}
+
+.actions-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.actions-bar .btn-action,
+.actions-bar .btn-outline-light {
+  width: 100%;
+  justify-content: center;
+  border-radius: 10px;
 }
 
 .top-bar .btn-action {
@@ -35,24 +69,27 @@ body {
   transform: translateY(-2px);
 }
 
+.dashboard-container,
+.hero-image {
+  margin-left: 260px;
+}
 
 .dashboard-container {
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-  margin-top: 2rem;
+  border-radius: 12px;
+  padding: 1rem;             
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  margin-top: 1rem;          
+  margin-right: 0.5rem;      
+  max-width: 950px;          
+  margin-left: auto;
+  margin-right: auto;        
+  transition: all 0.3s ease; 
 }
 
-/* Cabeçalho principal */
+
 header h1 {
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.08);
-}
-
-.actions-bar {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .btn-action {
@@ -67,7 +104,7 @@ header h1 {
 
 .btn-action:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card {
@@ -104,12 +141,18 @@ thead.custom-header {
 }
 
 .table {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
 }
+
+#tabelaEventos {
+  width: 80%;
+  margin: 0 auto;
+}
+
 
 .table th, 
 .table td {
-  padding: 6px 8px;
+  padding: 4px 6px;
   text-align: center;
   vertical-align: middle;
 }
@@ -201,4 +244,22 @@ thead.custom-header {
   font-size: 1.5rem;
   color: #d1410c;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    flex-direction: column;
+  }
+
+  .dashboard-container,
+  .hero-image {
+    margin-left: 0;
+  }
+
+  .actions-bar {
+    flex-direction: column;
+  }
 }
