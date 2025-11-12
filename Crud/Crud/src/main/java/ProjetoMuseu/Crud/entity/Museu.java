@@ -1,6 +1,5 @@
 package ProjetoMuseu.Crud.entity;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,7 +33,7 @@ public class Museu {
     @Column(name="Capacidade")
     private int capacidade;
     @Column(name="Fundacao")
-    private String tipodoevento;
+    private String fundacao;
     @Column(name = "Endereco")
     private String endereco;
     @Column(name="Preco")
