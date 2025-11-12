@@ -25,8 +25,8 @@ public class MuseuController {
     private MuseuService museuService;
 
     @GetMapping("/public/museus")
-    public MuseuService listarMuseusPublicos () {
-        return museuService;
+    public List<Museu> listarMuseusPublicos () {
+        return museuService.listarMuseus();
     }
     @GetMapping("/public/museus/{id}")
     public ResponseEntity<Museu> buscarMuseuPorId(@PathVariable int id) {
@@ -51,8 +51,6 @@ public class MuseuController {
         return ResponseEntity.ok(novoMuseu); 
     }
 
-
-    // Criar a porra do atualizar o museu
     @PutMapping("/admin/museus/{id}")
     public Museu atualizarMuseu(@PathVariable int id, @RequestBody Museu museuAtualizado) {
         return museuService.atualizarMuseu(id, museuAtualizado);
