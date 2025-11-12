@@ -37,7 +37,7 @@ public class MuseuService {
         return museuRepository.findById(id);
     }
 
-    public Museu atualizarEvento(int id, Museu MuseuAtualizado) { // Atualizar Existe!!!
+    public Museu atualizarMuseu(int id, Museu MuseuAtualizado) { // Atualizar Existe!!!
         return museuRepository.findById(id).map(museu -> {
             museu.setMuseu(MuseuAtualizado.getMuseu());
             museu.setDescricaomuseu(MuseuAtualizado.getDescricaomuseu());
