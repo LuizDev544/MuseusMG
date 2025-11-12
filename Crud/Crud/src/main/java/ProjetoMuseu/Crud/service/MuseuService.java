@@ -52,4 +52,5 @@ public class MuseuService {
             return museuRepository.save(MuseuAtualizado);
         }).orElseThrow(() -> new RuntimeException("Museu não encontrado"));
     }
+
 }
