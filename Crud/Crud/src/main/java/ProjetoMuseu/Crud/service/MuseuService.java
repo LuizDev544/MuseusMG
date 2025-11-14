@@ -49,7 +49,7 @@ public class MuseuService {
             museu.setEndereco(MuseuAtualizado.getEndereco());
             museu.setPreco(MuseuAtualizado.getPreco());
 
-            return museuRepository.save(MuseuAtualizado);
+            return museuRepository.save(museu);
         }).orElseThrow(() -> new RuntimeException("Museu não encontrado"));
     }
 
