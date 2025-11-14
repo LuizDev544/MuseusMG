@@ -41,8 +41,8 @@ public class MuseuService {
         return museuRepository.findById(id).map(museu -> {
             museu.setMuseu(MuseuAtualizado.getMuseu());
             museu.setDescricaomuseu(MuseuAtualizado.getDescricaomuseu());
-            museu.setHoraioabrir(MuseuAtualizado.getHoraioabrir());
-            museu.setHoraiosair(MuseuAtualizado.getHoraiosair());
+            museu.setHorarioabrir(MuseuAtualizado.getHorarioabrir());
+            museu.setHorariosair(MuseuAtualizado.getHorariosair());
             museu.setTema(MuseuAtualizado.getTema());
             museu.setCapacidade(MuseuAtualizado.getCapacidade());
             museu.setFundacao(MuseuAtualizado.getFundacao());
