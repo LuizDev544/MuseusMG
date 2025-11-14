@@ -1,0 +1,116 @@
+body.cadastro-bg {
+    background-image: url('../Imagens/ImagemFundoADM.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body.cadastro-bg::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
+.form-container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: rgba(139, 106, 63, 0.85); 
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.form-container:hover {
+    transform: scale(1.01);
+}
+
+.title {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #fff;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.85);
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #e2ba62;
+    background: #fff;
+    box-shadow: 0 0 6px #e2ba62;
+}
+
+.btn-primary {
+    background-color: #e2ba62;
+    color: #000;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e7e7e7;
+    transform: scale(1.05);
+}
+
+.btn-primary a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+
+.btn-primary a:hover {
+    color: inherit;
+}
+
+.message {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+}
