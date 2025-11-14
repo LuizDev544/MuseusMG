@@ -27,9 +27,9 @@ public class Museu {
     @Column(name="DescricaoMuseu")
     private String descricaomuseu;
     @Column(name="HorarioAbrir")
-    private String horaioabrir;
-    @Column(name="HorairoSair")
-    private String horaiosair;
+    private String horarioabrir;
+    @Column(name="HorarioSair")
+    private String horariosair;
     @Column(name="Tema")
     private String tema;
     @Column(name="Capacidade")
