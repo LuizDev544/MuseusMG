@@ -1,8 +1,10 @@
 body {
-  background-image: url('../Imagens/ImagemFundoADM.jpg'); 
-  background-size: auto;
+  background-image: url('../Imagens/WallpaperPapel.jpg'); 
+  background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  background-repeat: no-repeat;
+
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
@@ -76,15 +78,17 @@ body {
 
 .dashboard-container {
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  padding: 1rem;             
+  border-radius: 10px;
+  padding: 0.4rem;             
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-  margin-top: 1rem;          
-  margin-right: 0.5rem;      
-  max-width: 950px;          
-  margin-left: auto;
-  margin-right: auto;        
-  transition: all 0.3s ease; 
+  margin-top: 1rem;
+
+  margin-left: 260px;
+  margin-right: 20px;
+
+  max-width: calc(100% - 270px);
+
+  transition: all 0.3s ease;
 }
 
 
@@ -155,6 +159,7 @@ thead.custom-header {
   padding: 4px 6px;
   text-align: center;
   vertical-align: middle;
+  margin: auto;
 }
 
 .btn-sm {
@@ -269,7 +274,7 @@ thead.custom-header {
   .thumb {
     display: inline-block;
     width: 200px;
-    height: 300px;
+    height: 250px;
     overflow: hidden;
   }
 
