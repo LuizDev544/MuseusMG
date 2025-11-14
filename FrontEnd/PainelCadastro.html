@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Evento</title>
+  <link rel="stylesheet" href="../FrontEnd/Styles/Cadastro.css">
+</head>
+<body class="cadastro-bg">
+  <div class="form-container">
+    <h2 class="title">Cadastrar Novo Museu</h2>
+    <form id="formCadastro" class="form-grid">
+      <div class="form-group">
+        <label for="NomeMuseu">Nome do Museu:</label>
+        <input type="text" id="NomeMuseu" name="NomeMuseu" required>
+      </div>
+      <div class="form-group full-width">
+        <label for="DescicaoDoMuseu">Descrição:</label>
+        <textarea id="DescicaoDoMuseu" name="DescicaoDoMuseu" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="HorarioDeAbrir">Horário de Abrir:</label>
+        <input type="date" id="HorarioDeAbrir" name="HorarioDeAbrir" required>
+      </div>
+      <div class="form-group">
+        <label for="HorarioDeSair">Horário de sair:</label>
+        <input type="text" id="HorarioDeSair" name="HorarioDeSair" required>
+      </div>
+      <div class="form-group">
+        <label for="TemaDoMuseu">Tema:</label>
+        <input type="number" id="TemaDoMuseu" name="TemaDoMuseu" step="0.01" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="CapacidadeDePessoas">Capacidade de Pessoas:</label>
+        <input type="number" id="CapacidadeDePessoas" name="CapacidadeDePessoas" min="1" required>
+      </div>
+      <div class="form-group">
+        <label for="fundacao">Fundação:</label>
+        <input type="text" id="fundacao" name="fundacao" required>
+      </div>
+      <div class="form-group">
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" required>
+      </div>
+      <div class="form-group">
+        <label for="duracaoDoEvento">Duração do Evento:</label>
+        <input type="text" id="duracaoDoEvento" name="duracaoDoEvento" required>
+      </div>
+      <div class="form-group">
+        <label for="preco">Preço (R$):</label>
+        <input type="text" id="preco" name="preco" required>
+      </div>
+      <button type="submit" class="btn-primary full-width">Cadastrar</button>
+      <button type="button" class="btn-primary full-width" >
+        <a href="PainelADM.html">Voltar</a>
+      </button>
+    </form>
+    <p id="msg" class="message"></p>
+  </div>
+  <script src="../Front-end-Evento/scripts/authCheck.js"></script>
+  <script src="../Front-end-Evento/scripts/CadastrarEvento.js"></script>
+  <script src="../Front-end-Evento/scripts/Protection.js"></script>
+</body>
+</html>
