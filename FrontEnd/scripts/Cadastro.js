@@ -1,7 +1,10 @@
+const form = document.getElementById("formCadastro");
+const msg = document.getElementById("msg");
+
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const evento = {
+    const museu = {
         NomeMuseu: document.getElementById("NomeMuseu").value,
         DescicaoDoMuseu: document.getElementById("DescicaoDoMuseu").value,
         HorarioDeAbrir: document.getElementById("HorarioDeAbrir").value,
@@ -15,7 +18,7 @@ form.addEventListener("submit", async (e) => {
     };
 
     try {
-        const response = await fetch("http//localhost:8080/api/admin/museus", {
+        const response = await fetch("http://localhost:8080/api/admin/museus", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -28,14 +31,14 @@ form.addEventListener("submit", async (e) => {
         }
 
         const data = await response.json();
-        console.log("Evento cadastrado:", data);
+        console.log("Museu cadastrado:", data);
 
-        msg.textContent = "Evento cadastrado com sucesso!";
+        msg.textContent = "Museu cadastrado com sucesso!";
         msg.style.color = "green";
         form.reset();
 
     } catch (err) {
-        console.error("Erro ao cadastrar evento:", err);
+        console.error("Erro ao cadastrar museu:", err);
         msg.textContent = "Erro: " + err.message;
         msg.style.color = "red";
     }
