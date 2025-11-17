@@ -1,64 +1,225 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal de Museus - Home</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum Marvels Explorer</title>
+    <link rel="stylesheet" href="../FrontEnd/Styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-<header class="navbar">
-<h1 class="logo">Museum Explorer</h1>
-<nav>
-<a href="index.html">Home</a>
-<a href="museus.html">Museus</a>
-<a href="login.html">Login</a>
-</nav>
-</header>
 
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <h1 class="logo"><i class="fas fa-landmark logo-icon"></i> Museu MG</h1>
+        <nav>
+            <button class="cta-button">Ingressos</button>
+            <a href="#Home">Pagina Inicial</a>
+            <a href="#Museus">Museus</a>
+            <a href="#Eventos">Eventos</a>
+            <a href="#sobre">Sobre</a>
+            <a href="../FrontEnd/login-admin.html" class="cta-button">Login</a>
+        </nav>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
 
-<!-- Carrossel moderno CSS-only -->
-<section class="carousel">
-<div class="slides">
-<input type="radio" name="radio-btn" id="slide1" checked>
-<input type="radio" name="radio-btn" id="slide2">
-<input type="radio" name="radio-btn" id="slide3">
+    <!-- HERO SECTION -->
+    <section class="hero" id="Home">
+        <div class="hero-content fade-in">
+            <h1>Descubra um Mundo de Tesouros Culturais</h1>
+            <p>Explore artefatos de civilizações antigas, obras-primas contemporâneas e tesouros históricos de todo o mundo.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Explore Museus</a>
+                <a href="#" class="btn btn-secondary">Tour Virtual</a>
+            </div>
+        </div>
+    </section>
 
+    <main class="container">
 
-<div class="slide first">
-<img src="https://picsum.photos/id/1011/1200/500" alt="">
-<div class="caption">Descubra maravilhas históricas</div>
-</div>
-<div class="slide">
-<img src="https://picsum.photos/id/1025/1200/500" alt="">
-<div class="caption">Arte moderna e contemporânea</div>
-</div>
-<div class="slide">
-<img src="https://picsum.photos/id/1003/1200/500" alt="">
-<div class="caption">Ciência e tecnologia interativa</div>
-</div>
+        <!-- CAROUSEL -->
+        <section class="carousel-section">
+            <div class="carousel">
 
+                <!-- Slide 1 -->
+                <input type="radio" name="slides" id="slide1" checked>
+                <div class="slide s1">
+                    <div class="slide-content">
+                        <h2>Descubra o Patrimônio Mundial</h2>
+                        <p>Explore artefatos de civilizações antigas e descubra os segredos da nossa história compartilhada.</p>
+                    </div>
+                </div>
 
-<!-- Navegação automática -->
-<div class="auto-nav">
-<div class="auto-btn1"></div>
-<div class="auto-btn2"></div>
-<div class="auto-btn3"></div>
-</div>
-</div>
+                <!-- Slide 2 -->
+                <input type="radio" name="slides" id="slide2">
+                <div class="slide s2">
+                    <div class="slide-content">
+                        <h2>Galeria de Arte Moderna</h2>
+                        <p>Obras-primas contemporâneas de artistas globais que desafiam perspectivas e inspiram a criatividade.</p>
+                    </div>
+                </div>
 
+                <!-- Slide 3 -->
+                <input type="radio" name="slides" id="slide3">
+                <div class="slide s3">
+                    <div class="slide-content">
+                        <h2>Tesouros Historicos</h2>
+                        <p>Viaje através de séculos da história da humanidade e testemunhe os artefatos que moldaram o nosso mundo.</p>
+                    </div>
+                </div>
 
-<!-- Navegação manual -->
-<div class="manual-nav">
-<label for="slide1" class="manual-btn"></label>
-<label for="slide2" class="manual-btn"></label>
-<label for="slide3" class="manual-btn"></label>
-</div>
-</section>
+                <!-- Indicators -->
+                <div class="nav-manual">
+                    <label for="slide1" class="manual-btn"></label>
+                    <label for="slide2" class="manual-btn"></label>
+                    <label for="slide3" class="manual-btn"></label>
+                </div>
+            </div>
+        </section>
 
+        <!-- MUSEUM CARDS -->
+        <section class="museums">
+            <h2 class="section-title" id="Museus">Museus em destaque</h2>
 
-<footer class="footer">
-<p>© 2025 Museum Explorer</p>
-</footer>
+            <div class="grid">
+                <div class="museum-card fade-in">
+                    <div class="card-badge">Mais populares</div>
+                    <div class="img" style="background-image: url('../FrontEnd/Imagens/AfroBrasil.jpg');"></div>
+                    <div class="info">
+                        <h3>Galeria Nacional de Arte</h3>
+                        <p>Abriga a melhor coleção de arte moderna e contemporânea do país, com obras de artistas consagrados e emergentes.<p>
+                        <a href="https://museudasilusoes.com.br/?gad_source=1&gad_campaignid=21095341389&gbraid=0AAAAAoVEriue2_SATA5XII9BLpnvK026C&gclid=Cj0KCQiArOvIBhDLARIsAPwJXOb5_h8wulrfG2RpzWysibfl19IAh4KtyDWq9J0JURRaMC8cOZmakMQaAtDiEALw_wcB"><span class="price">Saiba Mais</span></a>
+                    </div>
+                </div>
+
+                <div class="museum-card fade-in">
+                    <div class="card-badge">Para Familia</div>
+                    <div class="img" style="background-image: url('../FrontEnd/Imagens/Catavento.webp');"></div>
+                    <div class="info">
+                        <h3>Museu De Historia Natural</h3>
+                        <p>Explore as maravilhas da natureza, desde fósseis de dinossauros a pedras preciosas raras, em nossas exposições interativas.</p>
+                        <span class="price">Saiba Mais</span>
+                    </div>
+                </div>
+
+                <div class="museum-card fade-in">
+                    <div class="card-badge">Interativo</div>
+                    <div class="img" style="background-image: url('../FrontEnd/Imagens/MuseuArteSP.webp');"></div>
+                    <div class="info">
+                        <h3>Centro de Ciência e Tecnologia</h3>
+                        <p>Exposições interativas que tornam a ciência divertida e acessível para todas as idades, com experimentos práticos.</p>
+                        <span class="price">Saiba Mais</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES SECTION -->
+        <section class="features" id="Eventos">
+            <h2 class="section-title">Por que escolher a MuseuMG?</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>Reserva fácil</h3>
+                    <p>Reserve seus ingressos online em segundos e evite as longas filas na entrada.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3>Visitas Virtuais</h3>
+                    <p>Explore museus no conforto da sua casa com nossas visitas virtuais imersivas.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-audio-description"></i>
+                    </div>
+                    <h3>Guias de áudio</h3>
+                    <p>Enriqueça sua visita com nossos guias de áudio completos, disponíveis em vários idiomas.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Calendário de Eventos</h3>
+                    <p>Mantenha-se atualizado sobre exposições especiais, workshops e eventos culturais.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="newsletter">
+            <h2>Mantenha-se atualizado</h2>
+            <p>Assine nossa newsletter para receber as últimas notícias sobre exposições, eventos e ofertas especiais.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Inscreva-se</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3 id="sobre">MuseuMG</h3>
+                <p>Sua porta de entrada para os museus e experiências culturais mais fascinantes do mundo.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="#">Museus</a></li>
+                    <li><a href="#">Exibisões</a></li>
+                    <li><a href="#">Tour Virtual</a></li>
+                    <li><a href="#">Eventos</a></li>
+                    <li><a href="#">Coleções</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Central de Atendimento</a></li>
+                    <li><a href="#">Contate-nos</a></li>
+                    <li><a href="#">Politica de Privacidade</a></li>
+                    <li><a href="#">Termos de Serviço</a></li>
+                    <li><a href="#">Acessebilidade</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contato</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Secretaria Da Cultura, Broklyn City</li>
+                    <li><i class="fas fa-phone"></i> +55 (11) 157-151</li>
+                    <li><i class="fas fa-envelope"></i> EmailFoda@gamil.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 Museu MG Explorar. Todos os Direitos Reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../FrontEnd/scripts/Cadastro.js"></script>
+    <script src="../FrontEnd/scripts/script.js"></script>
+
 </body>
 </html>
