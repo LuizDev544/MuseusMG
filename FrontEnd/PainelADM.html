@@ -14,16 +14,21 @@
                     <h1 class="display-5 fw-bold texto-laranja">Painel de Administração de Museus</h1>
                 </header>
                 <div class="actions-bar mb-2">
-                    <a href="CadastrarEvento.html" class="btn btn-light btn-action shadow-sm">
+                    <a href="PainelCadastro.html" class="btn btn-light btn-action shadow-sm">
                         <i data-feather="plus-circle"></i> Cadastrar Museus
                     </a>
-                    <a href="ExcluirEvento.html" class="btn btn-warning btn-action shadow-sm">
+                    <a href="PainelExcluir.html" class="btn btn-warning btn-action shadow-sm">
                         <i data-feather="trash-2"></i> Excluir Museus
                     </a>
-                    <a href="ConsultarEvento.html" class="btn btn-dark btn-action shadow-sm">
+                    <a href="PainelConsulta.html" class="btn btn-dark btn-action shadow-sm">
                         <i data-feather="search"></i> Consultar Museus
                     </a>
                     <button onclick="logout()" class="btn btn-outline-light">Sair</button>
+
+                    <br><br><br>
+                    <div class="thumb" tabindex="0">
+                        <img src="Imagens/Speed.gif" alt="Descrição da imagem">
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,10 +63,8 @@
 
                         <form id="formEdicao">
                             <button type="button" class="btn-close-form" onclick="fecharFormulario()">×</button>
-                            <h5 class="mb-3" style="color: #e2ad7c;">✏️ Editar Museu</h5>
-                            
+                            <h5 class="mb-3" style="color: #e2ad7c;">✏️ Editar Museu</h5>  
                             <input type="hidden" id="inputId" name="id">
-                    
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <label for="inputNome" class="form-label">Nome do Museu:</label>
@@ -76,7 +79,6 @@
                                     <input type="text" id="InputEntrada" name="HorarioAbrir" class="form-control">
                                 </div>
                             </div>
-                    
                             <div class="row g-3 mt-2">
                                 <div class="col-md-2">
                                     <label for="inputSaida" class="form-label">Hora de Saida:</label>

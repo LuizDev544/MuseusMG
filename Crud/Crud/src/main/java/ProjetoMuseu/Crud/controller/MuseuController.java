@@ -59,10 +59,10 @@ public class MuseuController {
     @DeleteMapping("/admin/museus/{id}")
     public ResponseEntity<Void> deletarMuseu(@PathVariable int id) {
         if (museuService.getMuseuService(id).isPresent()) {
-            return ResponseEntity.notFound().build();
-        }else{
             museuService.deletarMuseu(id);
             return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.notFound().build();
         }
     }
 }
