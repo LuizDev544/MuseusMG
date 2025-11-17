@@ -20,7 +20,7 @@ form.addEventListener("submit", async (e) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(evento)
+            body: JSON.stringify(museu)
         });
 
         if (!response.ok) {
