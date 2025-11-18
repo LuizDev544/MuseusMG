@@ -111,3 +111,47 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+
+// Adicionar esta função ao seu script.js existente
+
+// Função para filtrar museus por tema
+function filterMuseumsByTheme(theme) {
+    const cards = document.querySelectorAll('.museum-card');
+    
+    cards.forEach(card => {
+        const cardTheme = card.querySelector('.card-badge').textContent.toLowerCase();
+        if (theme === 'all' || cardTheme.includes(theme.toLowerCase())) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Adicionar filtros se necessário
+function addFilterButtons() {
+    const museumsSection = document.querySelector('.museums');
+    const sectionTitle = document.querySelector('.section-title');
+    
+    const filterHTML = `
+        <div class="museum-filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="arte">Arte</button>
+            <button class="filter-btn" data-filter="histórico">Histórico</button>
+            <button class="filter-btn" data-filter="cultural">Cultural</button>
+            <button class="filter-btn" data-filter="interativo">Interativo</button>
+        </div>
+    `;
+    
+    sectionTitle.insertAdjacentHTML('afterend', filterHTML);
+    
+    // Adicionar event listeners aos filtros
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            filterMuseumsByTheme(this.dataset.filter);
+        });
+    });
+}

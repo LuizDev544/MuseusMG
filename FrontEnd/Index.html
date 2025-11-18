@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,7 +67,7 @@
                 <div class="slide s3">
                     <div class="slide-content">
                         <h2>Tesouros Historicos</h2>
-                        <p>Viaje através de séculos da história da humanidade e testemunhe os artefatos que moldaram o nosso mundo.</p>
+                        <p>Viaje através de séculos da história da humana e testemunhe os artefatos que moldaram o nosso mundo.</p>
                     </div>
                 </div>
 
@@ -84,35 +84,11 @@
         <section class="museums">
             <h2 class="section-title" id="Museus">Museus em destaque</h2>
 
-            <div class="grid">
-                <div class="museum-card fade-in">
-                    <div class="card-badge">Mais populares</div>
-                    <div class="img" style="background-image: url('../FrontEnd/Imagens/AfroBrasil.jpg');"></div>
-                    <div class="info">
-                        <h3>Galeria Nacional de Arte</h3>
-                        <p>Abriga a melhor coleção de arte moderna e contemporânea do país, com obras de artistas consagrados e emergentes.<p>
-                        <a href="https://museudasilusoes.com.br/?gad_source=1&gad_campaignid=21095341389&gbraid=0AAAAAoVEriue2_SATA5XII9BLpnvK026C&gclid=Cj0KCQiArOvIBhDLARIsAPwJXOb5_h8wulrfG2RpzWysibfl19IAh4KtyDWq9J0JURRaMC8cOZmakMQaAtDiEALw_wcB"><span class="price">Saiba Mais</span></a>
-                    </div>
-                </div>
-
-                <div class="museum-card fade-in">
-                    <div class="card-badge">Para Familia</div>
-                    <div class="img" style="background-image: url('../FrontEnd/Imagens/Catavento.webp');"></div>
-                    <div class="info">
-                        <h3>Museu De Historia Natural</h3>
-                        <p>Explore as maravilhas da natureza, desde fósseis de dinossauros a pedras preciosas raras, em nossas exposições interativas.</p>
-                        <span class="price">Saiba Mais</span>
-                    </div>
-                </div>
-
-                <div class="museum-card fade-in">
-                    <div class="card-badge">Interativo</div>
-                    <div class="img" style="background-image: url('../FrontEnd/Imagens/MuseuArteSP.webp');"></div>
-                    <div class="info">
-                        <h3>Centro de Ciência e Tecnologia</h3>
-                        <p>Exposições interativas que tornam a ciência divertida e acessível para todas as idades, com experimentos práticos.</p>
-                        <span class="price">Saiba Mais</span>
-                    </div>
+            <div class="grid" id="museumsGrid">
+                <!-- Os cards serão gerados automaticamente aqui pelo JavaScript -->
+                <div class="loading-message">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Carregando museus...</p>
                 </div>
             </div>
         </section>
@@ -218,7 +194,7 @@
         </div>
     </footer>
 
-    <script src="../FrontEnd/scripts/Cadastro.js"></script>
+    <script src="../FrontEnd/scripts/museums-api.js"></script>
     <script src="../FrontEnd/scripts/script.js"></script>
 
 </body>
