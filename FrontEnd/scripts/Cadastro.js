@@ -5,15 +5,14 @@ form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const museu = {
-        NomeMuseu: document.getElementById("NomeMuseu").value,
-        DescicaoDoMuseu: document.getElementById("DescicaoDoMuseu").value,
-        HorarioDeAbrir: document.getElementById("HorarioDeAbrir").value,
-        HorarioDeSair: document.getElementById("HorarioDeSair").value,
-        TemaDoMuseu: parseFloat(document.getElementById("TemaDoMuseu").value),
-        CapacidadeDePessoas: parseInt(document.getElementById("CapacidadeDePessoas").value),
+        museu: document.getElementById("NomeMuseu").value,
+        descricaomuseu: document.getElementById("DescicaoDoMuseu").value,
+        horarioabrir: document.getElementById("HorarioDeAbrir").value,
+        horariosair: document.getElementById("HorarioDeSair").value,
+        tema: (document.getElementById("TemaDoMuseu").value),
+        capacidade: parseInt(document.getElementById("CapacidadeDePessoas").value),
         fundacao: document.getElementById("fundacao").value,
         endereco: document.getElementById("endereco").value,
-        duracaoDoEvento: document.getElementById("duracaoDoEvento").value,
         preco: document.getElementById("preco").value
     };
 

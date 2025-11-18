@@ -13,7 +13,6 @@ function mostrarMuseu(museu) {
     document.querySelector('#txtcapacidade').value = museu.capacidade || 'Não informado';
     document.querySelector('#txtfundacao').value = museu.fundacao || 'Não informado';
     document.querySelector('#txtendereco').value = museu.endereco || 'Não informado';
-    document.querySelector('#txtduracao').value = museu.duracao || '';
     document.querySelector('#txtpreco').value = museu.preco || '';
 
     console.log("✔ Formulário preenchido com sucesso!");

@@ -4,61 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar Museu</title>
-    <link rel="stylesheet" href="../Styles/Consulta.css">
+    <link rel="stylesheet" href="Styles/Consulta.css">
 </head>
 <body>
-    <h1>Consultando Evento</h1>
-    <form class="Formulaio" action="">
-        <label for="">Insira o ID do Museu</label>
-        <input type="number" name="idmuseu" id="idmuseu">
-        <button id="meubotao" type="button" onclick="consultarMuseu()">Consultar Museu</button>
-        <button id="meubotao" type="button">
-        <a href="../FrontEnd/PainelADM.html">Voltar</a>
-        </button>
-        <div id="resultado" class="main-div">
-            <p>Dados do Museu</p>
-            <div>
-                <label for="txtnome">Nome do Museu</label>
-                <input type="text" name="txtnome" id="txtnome">
+
+    <div class="container">
+        <h1>Consultando Museu</h1>
+
+        <form class="Formulario" action="">
+            <label>Insira o ID do Museu</label>
+            <input type="number" id="idmuseu">
+
+            <button class="btn" type="button" onclick="consultarMuseu()">Consultar Museu</button>
+
+            <button class="btn btn-voltar" type="button" onclick="window.location.href='../FrontEnd/PainelADM.html'">
+                Voltar
+            </button>
+
+            <div id="resultado" class="main-div">
+                <p>Dados do Museu</p>
+
+                <div>
+                    <label for="txtnome">Nome do Museu</label>
+                    <input type="text" id="txtnome">
+                </div>
+
+                <div>
+                    <label for="txtdescricao">Descrição do Museu</label>
+                    <input type="text" id="txtdescricao">
+                </div>
+
+                <div>
+                    <label for="txttema">Tema do Museu</label>
+                    <input type="text" id="txttema">
+                </div>
+
+                <div>
+                    <label for="txtcapacidade">Capacidade P/Pessoa</label>
+                    <input type="number" id="txtcapacidade">
+                </div>
+
+                <div>
+                    <label for="txtfundacao">Fundação</label>
+                    <input type="text" id="txtfundacao">
+                </div>
+
+                <div>
+                    <label for="txtendereco">Endereço do Museu</label>
+                    <input type="text" id="txtendereco">
+                </div>
+
+                <div>
+                    <label for="txtabrir">Horario Abrir</label>
+                    <input type="time" id="txtabrir">
+                </div>
+                
+                <div>
+                    <label for="txtsair">Horario Saida</label>
+                    <input type="time" id="txtsair">
+                </div>
+
+                <div>
+                    <label for="txtpreco">Preço do Ingresso</label>
+                    <input type="number" id="txtpreco">
+                </div>
             </div>
-            <div>
-                <label for="txtdescricao">Descrição do Museu</label>
-                <input type="text" name="txtdescricao" id="txtdescricao">
-            </div>
-            <div>
-                <label for="txtabrir">Hora de Abrir</label>
-                <input type="time" name="txtabrir" id="txtabrir">
-            </div>
-            <div>
-                <label for="txtsair">Hora de fechar</label>
-                <input type="time" name="txtsair" id="txtsair">
-            </div>
-            <div>
-                <label for="txttema">tema do Museu</label>
-                <input type="text" name="txttema" id="txttema">
-            </div>
-            <div>
-                <label for="txtcapacidade">Capacidade P/Pessoa</label>
-                <input type="number" name="txtcapacidade" id="txtcapacidade">
-            </div>
-            <div>
-                <label for="txtfundacao">Fundação</label>
-                <input type="text" name="txtfundacao" id="txtfundacao">
-            </div>
-            <div>
-                <label for="txtendereco">Endereço do museu</label>
-                <input type="text" name="txtendereco" id="txtendereco">
-            </div>
-            <div>
-                <label for="txtduracao">Duração do museu</label>
-                <input type="time" name="txtduracao" id="txtduracao">
-            </div>
-            <div>
-                <label for="txtpreco">Preço do Ingresso</label>
-                <input type="number" name="txtpreco" id="txtpreco">
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
+
     <script src="scripts/Consulta.js"></script>
 </body>
 </html>

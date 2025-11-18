@@ -6,91 +6,124 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+
   min-height: 100vh;
+}
+
+/* CONTAINER CENTRALIZADO */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 h1 {
   text-align: center;
   color: white;
-  margin-top: 30px;
   margin-bottom: 20px;
   text-shadow: 2px 2px 8px black;
 }
 
-.Formulaio {
+/* FORMULÁRIO CENTRALIZADO */
+.Formulario {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   padding: 25px;
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   width: 420px;
+  max-width: 420px;      /* <- evita estourar */
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
   margin-bottom: 50px;
+  box-sizing: border-box; /* <- impede ultrapassar a largura */
 }
 
-.Formulaio input {
+.Formulario input {
   width: 100%;
   padding: 10px;
   border: 1px solid #aaa;
   border-radius: 8px;
-  margin-top: 5px;
   outline: none;
   transition: border 0.3s ease;
 }
 
-.Formulaio input:focus {
-  border-color: #8b6a3f;
+.Formulario input,
+#resultado input {
+  width: 100%;
+  box-sizing: border-box; /* <- torna impossível estourar */
 }
 
-#meubotao {
+.btn {
   background-color: #8b6a3f;
   color: white;
   border: none;
   padding: 12px;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
   font-size: 15px;
-  margin-top: 5px;
 }
 
-#meubotao:hover {
+.btn:hover {
   background-color: #a58156;
   transform: scale(1.03);
 }
 
-#meubotao a {
-  color: white;
-  text-decoration: none;
+.btn-voltar {
+  background-color: #5a3b2a;
 }
 
+.btn-voltar:hover {
+  background-color: #704b36;
+}
+
+/* RESULTADO BEM ALINHADO */
 #resultado {
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 20px;
   border-radius: 15px;
   background-color: #8b6a3f;
   color: white;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+
+  width: 100%;          /* <- garante que não passa da borda */
+  box-sizing: border-box; /* <- inclui padding na largura */
 }
 
 #resultado p {
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 #resultado div {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 #resultado input {
+  width: 100%;            /* <- nunca passa da div */
+  box-sizing: border-box;  /* <- impede overflow */
   background: rgba(255, 255, 255, 0.9);
   color: black;
+}
+
+.Formulario label {
+  display: block;
+  width: 100%;
+}
+
+.Formulario {
+  width: 420px;
+  max-width: 420px;
+  box-sizing: border-box; /* impede estouro */
 }
