@@ -3,15 +3,15 @@ document.getElementById("newsletterForm").addEventListener("submit", async (e) =
 
     const email = document.getElementById("emailInput").value;
 
-    const response = await fetch("http://localhost:8080/api/newsletter", {
+    const resposta = await fetch("http://localhost:8080/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email })
     });
 
-    if (response.ok) {
-        alert("E-mail enviado com sucesso!");
+    if (resposta.ok) {
+        alert("Obrigado! Verifique seu e-mail.");
     } else {
-        alert("Erro ao enviar.");
+        alert("Erro ao enviar. Tente novamente.");
     }
 });
