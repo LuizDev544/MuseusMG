@@ -1,99 +1,77 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Museus</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../FrontEnd/styles/Consulta.css">
+    <title>Consultar Museu</title>
+    <link rel="stylesheet" href="Styles/Consulta.css">
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100">
-        <div class="consulta-card shadow-lg p-4 rounded-4 text-center">
-            <h2 class="mb-3 fw-bold">Consultar Evento</h2>
-            <p class="mb-4">Digite o <strong>ID</strong> do evento para visualizar as informações do museu.</p>
-            
-            <div class="input-group mb-4 w-75 mx-auto">
-                <input type="number" id="inputId" class="form-control rounded-start-pill" placeholder="Digite o ID do evento...">
-                <button class="btn btn-light rounded-end-pill fw-bold" id="btnBuscar">Buscar</button>
-            </div>
 
-            <div id="resultado" class="table-responsive mt-4 d-none">
-                <table class="table table-bordered table-striped align-middle text-white">
-                    <thead class="table-header">
-                        <tr>
-                            <th>ID</th>
-                            <th>Museu</th>
-                            <th>Descrição</th>
-                            <th>Hora Entrada</th>
-                            <th>Hora Saída</th>
-                            <th>Tema</th>
-                            <th>Capacidade</th>
-                            <th>Fundação</th>
-                            <th>Endereço</th>
-                            <th>Preço</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="dadosMuseu">
-                        <!-- bote as informações reais aq dps -->
-                    </tbody>
-                </table>
-            </div>
+    <div class="container">
+        <h1>Consultando Museu</h1>
 
+        <form class="Formulario" action="">
+            <label>Insira o ID do Museu</label>
+            <input type="number" id="idmuseu">
 
-            <div class="mt-4">
-                <button class="btn btn-retornar fw-bold px-5 py-2" onclick="window.location.href='PainelADM.html'">Retornar</button>
+            <button class="btn" type="button" onclick="consultarMuseu()">Consultar Museu</button>
+
+            <button class="btn btn-voltar" type="button" onclick="window.location.href='../FrontEnd/PainelADM.html'">
+                Voltar
+            </button>
+
+            <div id="resultado" class="main-div">
+                <p>Dados do Museu</p>
+
+                <div>
+                    <label for="txtnome">Nome do Museu</label>
+                    <input type="text" id="txtnome">
+                </div>
+
+                <div>
+                    <label for="txtdescricao">Descrição do Museu</label>
+                    <input type="text" id="txtdescricao">
+                </div>
+
+                <div>
+                    <label for="txttema">Tema do Museu</label>
+                    <input type="text" id="txttema">
+                </div>
+
+                <div>
+                    <label for="txtcapacidade">Capacidade P/Pessoa</label>
+                    <input type="number" id="txtcapacidade">
+                </div>
+
+                <div>
+                    <label for="txtfundacao">Fundação</label>
+                    <input type="text" id="txtfundacao">
+                </div>
+
+                <div>
+                    <label for="txtendereco">Endereço do Museu</label>
+                    <input type="text" id="txtendereco">
+                </div>
+
+                <div>
+                    <label for="txtabrir">Horario Abrir</label>
+                    <input type="time" id="txtabrir">
+                </div>
+                
+                <div>
+                    <label for="txtsair">Horario Saida</label>
+                    <input type="time" id="txtsair">
+                </div>
+
+                <div>
+                    <label for="txtpreco">Preço do Ingresso</label>
+                    <input type="number" id="txtpreco">
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 
-    <script>
-        const btnBuscar = document.getElementById("btnBuscar");
-        const inputId = document.getElementById("inputId");
-        const resultado = document.getElementById("resultado");
-        const dadosMuseu = document.getElementById("dadosMuseu");
-
-        btnBuscar.addEventListener("click", () => {
-            const id = inputId.value.trim();
-
-            if (!id) {
-                alert("Por favor, digite um ID válido!");
-                return;
-            }
-
-            const exemplo = {
-                id: id,
-                museu: "Museu da Arte Moderna",
-                descricao: "Exposição de arte contemporânea e oficinas culturais.",
-                horaEntrada: "09:00",
-                horaSaida: "18:00",
-                tema: "Arte e Cultura",
-                capacidade: "200 pessoas",
-                fundacao: "1958",
-                endereco: "Av. Pedro Álvares Cabral, 1301 - São Paulo, SP",
-                preco: "R$ 25,00"
-            };
-
-            dadosMuseu.innerHTML = `
-                <tr>
-                    <td>${exemplo.id}</td>
-                    <td>${exemplo.museu}</td>
-                    <td>${exemplo.descricao}</td>
-                    <td>${exemplo.horaEntrada}</td>
-                    <td>${exemplo.horaSaida}</td>
-                    <td>${exemplo.tema}</td>
-                    <td>${exemplo.capacidade}</td>
-                    <td>${exemplo.fundacao}</td>
-                    <td>${exemplo.endereco}</td>
-                    <td>${exemplo.preco}</td>
-                    <td><button class="btn btn-sm btn-excluir">Excluir</button></td>
-                </tr>
-            `;
-
-            resultado.classList.remove("d-none");
-        });
-    </script>
+    <script src="scripts/Consulta.js"></script>
 </body>
 </html>

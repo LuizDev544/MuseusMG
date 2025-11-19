@@ -6,98 +6,124 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
 }
 
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: -1;
+/* CONTAINER CENTRALIZADO */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.consulta-card {
+h1 {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px black;
+}
+
+/* FORMULÁRIO CENTRALIZADO */
+.Formulario {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  width: 420px;
+  max-width: 420px;      /* <- evita estourar */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 50px;
+  box-sizing: border-box; /* <- impede ultrapassar a largura */
+}
+
+.Formulario input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.Formulario input,
+#resultado input {
+  width: 100%;
+  box-sizing: border-box; /* <- torna impossível estourar */
+}
+
+.btn {
   background-color: #8b6a3f;
   color: white;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  max-width: 900px;
-  width: 100%;
-  transition: transform 0.3s ease;
-}
-
-.consulta-card:hover {
-  transform: scale(1.01);
-}
-
-.consulta-card h2 {
-  color: #ffffff;
-}
-
-.consulta-card p {
-  color: #f0f0f0;
-}
-
-#btnBuscar {
-  background-color: #e2ba62;
-  color: #000000;
-  transition: all 0.3s ease;
   border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 15px;
 }
 
-#btnBuscar:hover {
-  background-color: #e7e7e7;
-  transform: scale(1.05);
+.btn:hover {
+  background-color: #a58156;
+  transform: scale(1.03);
 }
 
-.table {
-  border-color: rgba(255, 255, 255, 0.4);
+.btn-voltar {
+  background-color: #5a3b2a;
 }
 
-.table-header {
-  background-color: rgba(255, 255, 255, 0.2);
+.btn-voltar:hover {
+  background-color: #704b36;
 }
 
-.table th, .table td {
-  color: rgb(0, 0, 0) !important;
-  vertical-align: middle;
+/* RESULTADO BEM ALINHADO */
+#resultado {
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #8b6a3f;
+  color: white;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+
+  width: 100%;          /* <- garante que não passa da borda */
+  box-sizing: border-box; /* <- inclui padding na largura */
+}
+
+#resultado p {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
-.btn-outline-light:hover {
-  background-color: #fff;
-  color: #9c6f51;
+#resultado div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
 }
 
-.btn-excluir {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  transition: all 0.3s ease;
+#resultado input {
+  width: 100%;            /* <- nunca passa da div */
+  box-sizing: border-box;  /* <- impede overflow */
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
 }
 
-.btn-excluir:hover {
-  background-color: #b02a37;
-  transform: scale(1.05);
+.Formulario label {
+  display: block;
+  width: 100%;
 }
 
-.btn-retornar {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-}
-
-.btn-retornar:hover {
-  background-color: #b02a37;
-  transform: scale(1.05);
-}
-
-.btn-retornar a {
-  color: white;
-  text-decoration: none;
-}
-
-.btn-retornar a:hover {
-  color: white;
+.Formulario {
+  width: 420px;
+  max-width: 420px;
+  box-sizing: border-box; /* impede estouro */
 }

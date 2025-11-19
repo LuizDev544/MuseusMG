@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastrar Evento</title>
-  <link rel="stylesheet" href="../FrontEnd/Styles/Cadastro.css">
+  <link rel="stylesheet" href="Styles/Cadastro.css">
 </head>
 <body class="cadastro-bg">
   <div class="form-container">
@@ -20,15 +20,15 @@
       </div>
       <div class="form-group">
         <label for="HorarioDeAbrir">Horário de Abrir:</label>
-        <input type="date" id="HorarioDeAbrir" name="HorarioDeAbrir" required>
+        <input type="time" id="HorarioDeAbrir" name="HorarioDeAbrir" required>
       </div>
       <div class="form-group">
         <label for="HorarioDeSair">Horário de sair:</label>
-        <input type="text" id="HorarioDeSair" name="HorarioDeSair" required>
+        <input type="time" id="HorarioDeSair" name="HorarioDeSair" required>
       </div>
       <div class="form-group">
         <label for="TemaDoMuseu">Tema:</label>
-        <input type="number" id="TemaDoMuseu" name="TemaDoMuseu" step="0.01" min="0" required>
+        <input type="text" id="TemaDoMuseu" name="TemaDoMuseu" step="0.01" min="0" required>
       </div>
       <div class="form-group">
         <label for="CapacidadeDePessoas">Capacidade de Pessoas:</label>
@@ -43,12 +43,8 @@
         <input type="text" id="endereco" name="endereco" required>
       </div>
       <div class="form-group">
-        <label for="duracaoDoEvento">Duração do Evento:</label>
-        <input type="text" id="duracaoDoEvento" name="duracaoDoEvento" required>
-      </div>
-      <div class="form-group">
         <label for="preco">Preço (R$):</label>
-        <input type="text" id="preco" name="preco" required>
+        <input type="number" id="preco" name="preco" required>
       </div>
       <button type="submit" class="btn-primary full-width">Cadastrar</button>
       <button type="button" class="btn-primary full-width" >
@@ -57,8 +53,6 @@
     </form>
     <p id="msg" class="message"></p>
   </div>
-  <script src="../Front-end-Evento/scripts/authCheck.js"></script>
-  <script src="../Front-end-Evento/scripts/CadastrarEvento.js"></script>
-  <script src="../Front-end-Evento/scripts/Protection.js"></script>
+  <script src="scripts/Cadastro.js"></script>
 </body>
 </html>

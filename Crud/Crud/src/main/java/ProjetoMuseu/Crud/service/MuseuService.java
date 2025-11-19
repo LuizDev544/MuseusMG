@@ -37,7 +37,7 @@ public class MuseuService {
         return museuRepository.findById(id);
     }
 
-    public Museu atualizarMuseu(int id, Museu MuseuAtualizado) { // Atualizar Existe!!!
+    public Museu atualizarMuseu(int id, Museu MuseuAtualizado) { // Atualizar Existe!!! (mentira) Dia 2 falando 
         return museuRepository.findById(id).map(museu -> {
             museu.setMuseu(MuseuAtualizado.getMuseu());
             museu.setDescricaomuseu(MuseuAtualizado.getDescricaomuseu());
@@ -49,7 +49,7 @@ public class MuseuService {
             museu.setEndereco(MuseuAtualizado.getEndereco());
             museu.setPreco(MuseuAtualizado.getPreco());
 
-            return museuRepository.save(MuseuAtualizado);
+            return museuRepository.save(museu);
         }).orElseThrow(() -> new RuntimeException("Museu não encontrado"));
     }
 
