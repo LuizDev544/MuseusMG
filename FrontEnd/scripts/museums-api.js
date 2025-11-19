@@ -177,16 +177,16 @@ class MuseumsAPI {
         }
     }
 
-    // Gerar imagem baseada no tema ou fundação
     getMuseumImage(museum) {
         const imageMap = {
-            'Arte': '../FrontEnd/Imagens/MuseuArteSP.webp',
-            'História': '../FrontEnd/Imagens/MuseuDoIpiranga.webp',
-            'História Cultural': '../FrontEnd/Imagens/MuseuDaImigracao.jpg',
-            'Arte Brasileira': '../FrontEnd/Imagens/Pinacoteca.jpg',
-            'Cultura Afro-Brasileira': '../FrontEnd/Imagens/AfroBrasil.jpg',
-            'Ciência e Tecnologia': '../FrontEnd/Imagens/Catavento.webp',
-            'Cultural': '../FrontEnd/Imagens/MuseuDaArteContemporanea.jpg'
+            'AfroBrasil': '../FrontEnd/Imagens/AfroBrasil.jpg',
+            'Catavento': '../FrontEnd/Imagens/Catavento.webp',
+            'MuseuArteSP': '../FrontEnd/Imagens/MuseuArteSP.webp',
+            'MuseuDaImigracao': '../FrontEnd/Imagens/MuseuDaImigracao.jpg',
+            'MuseuDaLinguaPortuguesa': '../FrontEnd/Imagens/MuseuDaLinguaPortuguesa.jpg',
+            'MuseuDoCafe': '../FrontEnd/Imagens/MuseuDoCafe.jpg',
+            'MuseuDoFutebol': '../FrontEnd/Imagens/MuseuDoFutebol.webp',
+            'MuseuDoIpiranga': '../FrontEnd/Imagens/MuseuDoIpiranga.webp'
         };
 
         return imageMap[museum.tema] || '../FrontEnd/Imagens/MuseuDaArteContemporanea.jpg';

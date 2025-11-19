@@ -65,18 +65,22 @@
         </section>
         <section class="museums">
 
-            <form class="d-flex w-50" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar museus" aria-label="Search">
-                <button class="btn btn-outline-danger" type="submit">Buscar</button>
-            </form>
+            <div class="search-container">
+                <form class="d-flex" role="search">
+                    <input class="form-control" type="search" placeholder="Procurar Museu" aria-label="Search">
+                </form>
+            </div>
 
-            <h2 class="section-title" id="Museus">Museus em destaque</h2>
-            <div class="grid" id="museumsGrid">
-                <div class="loading-message">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Carregando museus...</p>
+            <div class="container-limit">
+                <h2 class="section-title" id="Museus">Museus em destaque</h2>
+                <div class="grid" id="museumsGrid">
+                    <div class="loading-message">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Carregando museus...</p>
+                    </div>
                 </div>
             </div>
+
         </section>
         <section class="features" id="Eventos">
             <h2 class="section-title">Por que escolher a MuseuMG?</h2>
