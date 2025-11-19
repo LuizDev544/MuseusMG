@@ -8,7 +8,7 @@ import ProjetoMuseu.Crud.service.EmailService;
 
 @RestController
 @RequestMapping("/api/newsletter")
-@CrossOrigin(origins = "*") // Permite chamadas do front
+@CrossOrigin(origins = "*") 
 public class EmailController {
 
     private final EmailService emailService;
