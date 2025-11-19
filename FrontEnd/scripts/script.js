@@ -1,15 +1,21 @@
+// Navbar scroll effect
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 60) navbar.classList.add('scrolled');
-    else navbar.classList.remove('scrolled');
+    if (window.scrollY > 60) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
 });
 
+// Mobile menu toggle
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const nav = document.querySelector('.navbar nav');
 
 mobileMenuBtn.addEventListener('click', function() {
-    if (nav.style.display === 'flex') nav.style.display = 'none';
-    else {
+    if (nav.style.display === 'flex') {
+        nav.style.display = 'none';
+    } else {
         nav.style.display = 'flex';
         nav.style.flexDirection = 'column';
         nav.style.position = 'absolute';
@@ -25,18 +31,22 @@ mobileMenuBtn.addEventListener('click', function() {
     }
 });
 
+// Auto-advance carousel
 let currentSlide = 1;
 const totalSlides = 3;
-let carouselInterval = setInterval(function() {
+
+const carouselInterval = setInterval(function() {
     document.getElementById(`slide${currentSlide}`).checked = false;
     currentSlide = currentSlide % totalSlides + 1;
     document.getElementById(`slide${currentSlide}`).checked = true;
 }, 5000);
 
+// Pause carousel on hover
 const carousel = document.querySelector('.carousel');
 carousel.addEventListener('mouseenter', function() {
     clearInterval(carouselInterval);
 });
+
 carousel.addEventListener('mouseleave', function() {
     carouselInterval = setInterval(function() {
         document.getElementById(`slide${currentSlide}`).checked = false;
@@ -45,29 +55,40 @@ carousel.addEventListener('mouseleave', function() {
     }, 5000);
 });
 
+// Fade-in animation on scroll
 const fadeElements = document.querySelectorAll('.fade-in');
-function fadeInOnScroll() {
+
+const fadeInOnScroll = function() {
     fadeElements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
         const elementVisible = 150;
+        
         if (elementTop < window.innerHeight - elementVisible) {
             element.classList.add('active');
         }
     });
-}
-window.addEventListener('scroll', fadeInOnScroll);
-fadeInOnScroll();
+};
 
+window.addEventListener('scroll', fadeInOnScroll);
+fadeInOnScroll(); // Check on initial load
+
+// Newsletter form submission
 const newsletterForm = document.querySelector('.newsletter-form');
 newsletterForm.addEventListener('submit', function(e) {
     e.preventDefault();
+    const email = this.querySelector('input[type="email"]').value;
+    
+    // Simulate form submission
     const submitBtn = this.querySelector('button');
     const originalText = submitBtn.textContent;
+    
     submitBtn.textContent = 'Subscribing...';
     submitBtn.disabled = true;
+    
     setTimeout(() => {
         submitBtn.textContent = 'Subscribed!';
         submitBtn.style.background = 'var(--success)';
+        
         setTimeout(() => {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
@@ -77,6 +98,7 @@ newsletterForm.addEventListener('submit', function(e) {
     }, 1000);
 });
 
+// Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -90,16 +112,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+
+// Adicionar esta função ao seu script.js existente
+
+// Função para filtrar museus por tema
 function filterMuseumsByTheme(theme) {
     const cards = document.querySelectorAll('.museum-card');
+    
     cards.forEach(card => {
         const cardTheme = card.querySelector('.card-badge').textContent.toLowerCase();
-        card.style.display = (theme === 'all' || cardTheme.includes(theme.toLowerCase())) ? 'block' : 'none';
+        if (theme === 'all' || cardTheme.includes(theme.toLowerCase())) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
     });
 }
 
+// Adicionar filtros se necessário
 function addFilterButtons() {
+    const museumsSection = document.querySelector('.museums');
     const sectionTitle = document.querySelector('.section-title');
+    
     const filterHTML = `
         <div class="museum-filters">
             <button class="filter-btn active" data-filter="all">Todos</button>
@@ -109,7 +143,10 @@ function addFilterButtons() {
             <button class="filter-btn" data-filter="interativo">Interativo</button>
         </div>
     `;
+    
     sectionTitle.insertAdjacentHTML('afterend', filterHTML);
+    
+    // Adicionar event listeners aos filtros
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -117,115 +154,4 @@ function addFilterButtons() {
             filterMuseumsByTheme(this.dataset.filter);
         });
     });
-}
-
-document.addEventListener('DOMContentLoaded', carregarMuseus);
-
-async function carregarMuseus() {
-    try {
-        const response = await fetch('http://localhost:8080/api/public/museus');
-        if (!response.ok) throw new Error(`Erro ${response.status}: ${response.statusText}`);
-        const museus = await response.json();
-        exibirMuseus(museus);
-        addFilterButtons();
-    } catch (error) {
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('listaMuseus').innerHTML = `
-            <div class="col-12 text-center">
-                <div class="alert alert-danger">Erro ao carregar museus</div>
-            </div>`;
-    }
-}
-
-function exibirMuseus(museus) {
-    const container = document.getElementById('listaMuseus');
-    const loading = document.getElementById('loading');
-    const semMuseus = document.getElementById('semMuseus');
-
-    if (loading) loading.style.display = 'none';
-
-    if (!museus || museus.length === 0) {
-        if (semMuseus) semMuseus.style.display = 'block';
-        return;
-    }
-
-    container.innerHTML = '';
-    museus.forEach(museu => {
-        const card = criarCardMuseu(museu);
-        container.appendChild(card);
-    });
-}
-
-function obterImagemPorTema(tema) {
-    const imagens = {
-        'AfroBrasil': 'imagem/AfroBrasil.jpg',
-        'Catavento': 'imagem/Catavento.jpg',
-        'MuseuArte': 'imagem/MuseuArteSP.webp',
-        'MuseuContemporanea': 'imagem/MuseuDaArteContemporanea.jpg'
-    };
-    if (!tema) return 'imagem/Speed.gif';
-    for (const key in imagens) {
-        if (tema.toLowerCase().includes(key)) return imagens[key];
-    }
-    return 'imagem/Speed.gif';
-}
-
-function criarCardMuseu(museu) {
-    const tema = museu.tema || museu.categoria || '';
-    const imagens = obterImagemPorTema(tema);
-
-    const col = document.createElement('div');
-    col.className = 'col-md-6 mb-4';
-
-    col.innerHTML = `
-        <div class="card museum-card shadow-sm">
-            <img src="${imagens}" alt="${museu.nome}" class="card-img-top museum-img" onerror="this.src=''">
-            <div class="card-body">
-                <h5 class="card-title">${museu.nome}</h5>
-                <span class="card-badge badge bg-secondary">${tema}</span>
-                <p class="card-text">${museu.descricao}</p>
-                <p><strong>Endereço:</strong> ${museu.endereco}</p>
-            </div>
-        </div>
-    `;
-
-    return col;
-}
-
-const searchForm = document.querySelector('form[role="search"]');
-if (searchForm) {
-    searchForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const termo = this.querySelector('input[type="search"]').value.toLowerCase();
-        filtrarMuseus(termo);
-    });
-}
-
-function filtrarMuseus(termo) {
-    const cards = document.querySelectorAll('.museum-card');
-    let encontrados = 0;
-
-    cards.forEach(card => {
-        const texto = card.textContent.toLowerCase();
-        const pai = card.closest('.col-md-6');
-        if (texto.includes(termo) || termo === '') {
-            pai.style.display = 'block';
-            encontrados++;
-        } else {
-            pai.style.display = 'none';
-        }
-    });
-
-    const semResultados = document.getElementById('semResultados');
-    if (encontrados === 0 && termo !== '') {
-        if (!semResultados) {
-            const msg = document.createElement('div');
-            msg.id = 'semResultados';
-            msg.className = 'col-12 text-center mt-4';
-            msg.innerHTML = `<div class="alert alert-warning">Nenhum museu encontrado para "${termo}"</div>`;
-            document.getElementById('listaMuseus').appendChild(msg);
-        }
-    } else if (semResultados) {
-        semResultados.remove();
-    }
 }
