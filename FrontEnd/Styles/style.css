@@ -31,6 +31,14 @@ body {
     overflow-x: hidden;
 }
 
+.museum-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
 /* NAVBAR */
 .navbar {
     background: rgba(255, 255, 255, 0.95);
