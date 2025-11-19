@@ -7,10 +7,7 @@
     <link rel="stylesheet" href="../FrontEnd/Styles/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-
-    <!-- NAVBAR -->
     <header class="navbar">
         <h1 class="logo"><i class="fas fa-landmark logo-icon"></i> Museu MG</h1>
         <nav>
@@ -25,8 +22,6 @@
             <i class="fas fa-bars"></i>
         </button>
     </header>
-
-    <!-- HERO SECTION -->
     <section class="hero" id="Home">
         <div class="hero-content fade-in">
             <h1>Descubra um Mundo de Tesouros Culturais</h1>
@@ -37,14 +32,9 @@
             </div>
         </div>
     </section>
-
     <main class="container">
-
-        <!-- CAROUSEL -->
         <section class="carousel-section">
             <div class="carousel">
-
-                <!-- Slide 1 -->
                 <input type="radio" name="slides" id="slide1" checked>
                 <div class="slide s1">
                     <div class="slide-content">
@@ -52,8 +42,6 @@
                         <p>Explore artefatos de civilizações antigas e descubra os segredos da nossa história compartilhada.</p>
                     </div>
                 </div>
-
-                <!-- Slide 2 -->
                 <input type="radio" name="slides" id="slide2">
                 <div class="slide s2">
                     <div class="slide-content">
@@ -61,8 +49,6 @@
                         <p>Obras-primas contemporâneas de artistas globais que desafiam perspectivas e inspiram a criatividade.</p>
                     </div>
                 </div>
-
-                <!-- Slide 3 -->
                 <input type="radio" name="slides" id="slide3">
                 <div class="slide s3">
                     <div class="slide-content">
@@ -70,8 +56,6 @@
                         <p>Viaje através de séculos da história da humana e testemunhe os artefatos que moldaram o nosso mundo.</p>
                     </div>
                 </div>
-
-                <!-- Indicators -->
                 <div class="nav-manual">
                     <label for="slide1" class="manual-btn"></label>
                     <label for="slide2" class="manual-btn"></label>
@@ -79,21 +63,15 @@
                 </div>
             </div>
         </section>
-
-        <!-- MUSEUM CARDS -->
         <section class="museums">
             <h2 class="section-title" id="Museus">Museus em destaque</h2>
-
             <div class="grid" id="museumsGrid">
-                <!-- Os cards serão gerados automaticamente aqui pelo JavaScript -->
                 <div class="loading-message">
                     <i class="fas fa-spinner fa-spin"></i>
                     <p>Carregando museus...</p>
                 </div>
             </div>
         </section>
-
-        <!-- FEATURES SECTION -->
         <section class="features" id="Eventos">
             <h2 class="section-title">Por que escolher a MuseuMG?</h2>
             <div class="features-grid">
@@ -104,7 +82,6 @@
                     <h3>Reserva fácil</h3>
                     <p>Reserve seus ingressos online em segundos e evite as longas filas na entrada.</p>
                 </div>
-                
                 <div class="feature-card fade-in">
                     <div class="feature-icon">
                         <i class="fas fa-vr-cardboard"></i>
@@ -112,15 +89,13 @@
                     <h3>Visitas Virtuais</h3>
                     <p>Explore museus no conforto da sua casa com nossas visitas virtuais imersivas.</p>
                 </div>
-                
                 <div class="feature-card fade-in">
                     <div class="feature-icon">
                         <i class="fas fa-audio-description"></i>
                     </div>
                     <h3>Guias de áudio</h3>
                     <p>Enriqueça sua visita com nossos guias de áudio completos, disponíveis em vários idiomas.</p>
-                </div>
-                
+                </div>  
                 <div class="feature-card fade-in">
                     <div class="feature-icon">
                         <i class="fas fa-calendar-alt"></i>
@@ -130,20 +105,15 @@
                 </div>
             </div>
         </section>
-
-        <!-- NEWSLETTER -->
         <section class="newsletter">
             <h2>Mantenha-se atualizado</h2>
             <p>Assine nossa newsletter para receber as últimas notícias sobre exposições, eventos e ofertas especiais.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Your email address" required>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" id="emailInput" placeholder="Your email address" required>
                 <button type="submit">Inscreva-se</button>
-            </form>
+            </form>          
         </section>
-
     </main>
-
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-column">
@@ -156,7 +126,6 @@
                     <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
-            
             <div class="footer-column">
                 <h3>Explore</h3>
                 <ul>
@@ -166,8 +135,7 @@
                     <li><a href="#">Eventos</a></li>
                     <li><a href="#">Coleções</a></li>
                 </ul>
-            </div>
-            
+            </div>   
             <div class="footer-column">
                 <h3>Support</h3>
                 <ul>
@@ -178,7 +146,6 @@
                     <li><a href="#">Acessebilidade</a></li>
                 </ul>
             </div>
-            
             <div class="footer-column">
                 <h3>Contato</h3>
                 <ul>
@@ -188,14 +155,12 @@
                 </ul>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <p>© 2025 Museu MG Explorar. Todos os Direitos Reservados.</p>
         </div>
     </footer>
-
     <script src="../FrontEnd/scripts/museums-api.js"></script>
     <script src="../FrontEnd/scripts/script.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </body>
 </html>
