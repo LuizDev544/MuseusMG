@@ -17,27 +17,27 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @NoArgsConstructor
-@Table(name = "Museus")
+@Table(name = "museus")
 public class Museu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "Museu")
+    @Column(name = "museu") 
     private String museu;
-    @Column(name="DescricaoMuseu")
+    @Column(name = "descricao_museu")
     private String descricaomuseu;
-    @Column(name="HorarioAbrir")
+    @Column(name = "horario_abrir")
     private String horarioabrir;
-    @Column(name="HorarioSair")
+    @Column(name = "horario_sair") 
     private String horariosair;
-    @Column(name="Tema")
+    @Column(name = "tema") 
     private String tema;
-    @Column(name="Capacidade")
+    @Column(name = "capacidade") 
     private int capacidade;
-    @Column(name="Fundacao")
+    @Column(name = "fundacao") 
     private String fundacao;
-    @Column(name = "Endereco")
+    @Column(name = "endereco") 
     private String endereco;
-    @Column(name="Preco")
+    @Column(name = "preco") 
     private Double preco;
 }

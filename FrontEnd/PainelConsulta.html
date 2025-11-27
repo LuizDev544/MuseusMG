@@ -4,74 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar Museu</title>
-    <link rel="stylesheet" href="Styles/Consulta.css">
+    <link rel="stylesheet" href="styles/Consulta.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
+    <div class="container-fluid py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <h1 class="text-center mb-4">Consultar Museu</h1>
 
-    <div class="container">
-        <h1>Consultando Museu</h1>
+                <form class="Formulario" id="consultaForm">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">
+                                <i data-feather="search"></i> Consulta por ID
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="idmuseu" class="form-label fw-bold">Insira o ID do Museu</label>
+                                <input type="number" id="idmuseu" class="form-control" placeholder="Ex: 1, 2, 3..." min="1" required>
+                                <div class="form-text">Digite o ID numérico do museu que deseja consultar</div>
+                            </div>
 
-        <form class="Formulario" action="">
-            <label>Insira o ID do Museu</label>
-            <input type="number" id="idmuseu">
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-consultar">
+                                    <i data-feather="search"></i> Consultar Museu
+                                </button>
+                                
+                                <a href="PainelADM.html" class="btn btn-secondary">
+                                    <i data-feather="arrow-left"></i> Voltar ao Painel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
 
-            <button class="btn" type="button" onclick="consultarMuseu()">Consultar Museu</button>
-
-            <button class="btn btn-voltar" type="button" onclick="window.location.href='../FrontEnd/PainelADM.html'">
-                Voltar
-            </button>
-
-            <div id="resultado" class="main-div">
-                <p>Dados do Museu</p>
-
-                <div>
-                    <label for="txtnome">Nome do Museu</label>
-                    <input type="text" id="txtnome">
+                <!-- Loading Spinner -->
+                <div id="loadingSpinner" class="d-none mt-4">
+                    <div class="text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Carregando...</span>
+                        </div>
+                        <p class="mt-2 mb-0">Consultando dados do museu...</p>
+                    </div>
                 </div>
 
-                <div>
-                    <label for="txtdescricao">Descrição do Museu</label>
-                    <input type="text" id="txtdescricao">
-                </div>
+                <!-- Mensagens de Status -->
+                <div id="statusMessage" class="alert d-none mt-3"></div>
 
-                <div>
-                    <label for="txttema">Tema do Museu</label>
-                    <input type="text" id="txttema">
-                </div>
+                <!-- Resultado da Consulta -->
+                <div id="resultado" class="main-div card mt-4 d-none">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title mb-0">
+                            <i data-feather="info"></i> Dados do Museu
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="txtnome" class="form-label fw-bold">Nome do Museu</label>
+                                <input type="text" id="txtnome" class="form-control" readonly>
+                            </div>
 
-                <div>
-                    <label for="txtcapacidade">Capacidade P/Pessoa</label>
-                    <input type="number" id="txtcapacidade">
-                </div>
+                            <div class="col-12">
+                                <label for="txtdescricao" class="form-label fw-bold">Descrição do Museu</label>
+                                <textarea id="txtdescricao" class="form-control" rows="3" readonly></textarea>
+                            </div>
 
-                <div>
-                    <label for="txtfundacao">Fundação</label>
-                    <input type="text" id="txtfundacao">
-                </div>
+                            <div class="col-md-6">
+                                <label for="txttema" class="form-label fw-bold">Tema do Museu</label>
+                                <input type="text" id="txttema" class="form-control" readonly>
+                            </div>
 
-                <div>
-                    <label for="txtendereco">Endereço do Museu</label>
-                    <input type="text" id="txtendereco">
-                </div>
+                            <div class="col-md-6">
+                                <label for="txtcapacidade" class="form-label fw-bold">Capacidade (Pessoas)</label>
+                                <input type="number" id="txtcapacidade" class="form-control" readonly>
+                            </div>
 
-                <div>
-                    <label for="txtabrir">Horario Abrir</label>
-                    <input type="time" id="txtabrir">
-                </div>
-                
-                <div>
-                    <label for="txtsair">Horario Saida</label>
-                    <input type="time" id="txtsair">
-                </div>
+                            <div class="col-md-6">
+                                <label for="txtfundacao" class="form-label fw-bold">Fundação</label>
+                                <input type="text" id="txtfundacao" class="form-control" readonly>
+                            </div>
 
-                <div>
-                    <label for="txtpreco">Preço do Ingresso</label>
-                    <input type="number" id="txtpreco">
+                            <div class="col-12">
+                                <label for="txtendereco" class="form-label fw-bold">Endereço do Museu</label>
+                                <input type="text" id="txtendereco" class="form-control" readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="txtabrir" class="form-label fw-bold">Horário de Abertura</label>
+                                <input type="time" id="txtabrir" class="form-control" readonly>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="txtsair" class="form-label fw-bold">Horário de Fechamento</label>
+                                <input type="time" id="txtsair" class="form-control" readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="txtpreco" class="form-label fw-bold">Preço do Ingresso (R$)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">R$</span>
+                                    <input type="number" id="txtpreco" class="form-control" step="0.01" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 
-    <script src="scripts/Consulta.js"></script>
+    <script src="scripts/security-config.js"></script>
+    <script src="scripts/protected-auth.js"></script>
+    <script src="scripts/Consulta.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbJ5Q2" crossorigin="anonymous"></script>
 </body>
 </html>

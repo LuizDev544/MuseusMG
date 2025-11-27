@@ -25,7 +25,7 @@
                     <label for="email">E-mail</label>
                     <div class="input-group">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                        <input type="email" id="email" name="email" placeholder="admin@museumarvels.com" required>
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@
 
             <div class="auth-footer">
                 <p>Não tem uma conta? <a href="cadastro-admin.html">Criar conta admin</a></p>
-                <a href="../FrontEnd/Index.html" class="cta-button">Pagina Inicial</a>
+                <a href="../FrontEnd/PainelUsuario.html" class="cta-button">Pagina Inicial</a>
             </div>
         </div>
 
@@ -72,6 +72,26 @@
         </div>
     </div>
 
-    <script src="../FrontEnd/scripts/auth.js"></script>
+    <!-- Scripts NA ORDEM CORRETA -->
+    <script src="scripts/security-config.js"></script>
+    <script src="scripts/admin-auth.js"></script>
+
+    <!-- Script de debug (opcional) -->
+    <script>
+    // Funções de debug disponíveis globalmente
+    function debugCheckAuth() {
+        const token = localStorage.getItem('jwtToken');
+        const userData = localStorage.getItem('userData');
+        console.log('🔍 Debug - Token:', token);
+        console.log('🔍 Debug - UserData:', userData);
+        alert(`Token: ${token ? 'EXISTE' : 'NÃO EXISTE'}\nUserData: ${userData || 'NÃO EXISTE'}`);
+    }
+
+    function debugClearStorage() {
+        localStorage.clear();
+        console.log('🧹 Storage limpo');
+        alert('Storage limpo!');
+    }
+    </script>
 </body>
 </html>

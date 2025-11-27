@@ -1,95 +1,105 @@
-document.addEventListener("DOMContentLoaded", carregarMuseus);
+// FrontEnd/scripts/museus/listar-museu.js
+class ListarMuseu {
+    constructor() {
+        this.apiUrl = 'http://localhost:8080/api/admin/museus';
+    }
 
-async function carregarMuseus() {
-    try {
-        const resposta = await fetch("http://localhost:8080/api/admin/museus");
+    async init() {
+        await this.carregarMuseus();
+    }
 
-        if (!resposta.ok) {
-            console.error("Erro ao buscar museus:", resposta.status);
-            return;
+    async carregarMuseus() {
+        try {
+            const token = localStorage.getItem('jwtToken');
+            
+            if (!token) {
+                console.error('❌ Token JWT não encontrado');
+                return;
+            }
+
+            console.log('🔐 Token sendo enviado:', token.substring(0, 20) + '...');
+
+            const response = await fetch(this.apiUrl, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Erro ${response.status}: ${response.statusText}`);
+            }
+
+            const museus = await response.json();
+            this.exibirMuseus(museus);
+            
+        } catch (error) {
+            console.error('❌ Erro ao buscar museus:', error);
+            this.mostrarMensagem('Erro ao carregar museus: ' + error.message, 'error');
         }
+    }
 
-        const lista = await resposta.json();
-        const tabela = document.querySelector("#tabelaEventos tbody");
-        tabela.innerHTML = "";
+    exibirMuseus(museus) {
+        const tbody = document.querySelector('#tabelaEventos tbody');
+        if (!tbody) return;
 
-        lista.forEach(m => {
-            const row = `
-                <tr>
-                    <td>${m.id}</td>
-                    <td>${m.museu}</td>
-                    <td>${m.descricaomuseu}</td>
-                    <td>${m.horarioabrir}</td>
-                    <td>${m.horariosair}</td>
-                    <td>${m.tema}</td>
-                    <td>${m.capacidade}</td>
-                    <td>${m.fundacao}</td>
-                    <td>${m.endereco}</td>
-                    <td>${m.preco}</td>
-                    <td class="text-center">
-                        <button class="btn btn-primary btn-sm" onclick="abrirFormulario(${m.id})">
-                            Editar
-                        </button>
-                    </td>
-                </tr>
+        tbody.innerHTML = '';
+
+        museus.forEach(museu => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${museu.id}</td>
+                <td>${museu.museu || ''}</td>
+                <td>${museu.descricaomuseu || ''}</td>
+                <td>${museu.horarioabrir || ''}</td>
+                <td>${museu.horariosair || ''}</td>
+                <td>${museu.tema || ''}</td>
+                <td>${museu.capacidade || ''}</td>
+                <td>${museu.fundacao || ''}</td>
+                <td>${museu.endereco || ''}</td>
+                <td>${museu.preco || ''}</td>
+                <td class="text-center">
+                    <button class="btn btn-warning btn-sm btn-editar" data-id="${museu.id}">
+                        Editar
+                    </button>
+                </td>
             `;
-            tabela.innerHTML += row;
+            tbody.appendChild(tr);
         });
 
-    } catch (erro) {
-        console.error("Erro ao listar museus", erro);
+        this.configurarBotoesEditar();
+        console.log(`✅ ${museus.length} museus exibidos na tabela`);
+    }
+
+    configurarBotoesEditar() {
+        const botoes = document.querySelectorAll('.btn-editar');
+        botoes.forEach(botao => {
+            botao.addEventListener('click', (e) => {
+                const id = e.target.getAttribute('data-id');
+                console.log(`🔘 Botão Editar clicado: ID ${id}`);
+                
+                if (typeof window.abrirEdicao === 'function') {
+                    window.abrirEdicao(id);
+                } else if (typeof window.editarMuseuManager !== 'undefined' && window.editarMuseuManager.abrirEdicao) {
+                    window.editarMuseuManager.abrirEdicao(id);
+                } else {
+                    alert('Sistema de edição não carregado. Recarregue a página.');
+                }
+            });
+        });
+        
+        console.log(`✅ ${botoes.length} botões de edição configurados`);
+    }
+
+    mostrarMensagem(mensagem, tipo) {
+        console.log(`${tipo}: ${mensagem}`);
     }
 }
 
+// Inicialização global
+let listarMuseu;
 
-async function abrirFormulario(id) {
-
-    const resposta = await fetch(`http://localhost:8080/api/admin/museus/${id}`);
-    const museu = await resposta.json();
-
-    document.getElementById("inputId").value = museu.id;
-    document.getElementById("inputNome").value = museu.museu;
-    document.getElementById("inputDescricao").value = museu.descricaomuseu;
-    document.getElementById("InputEntrada").value = museu.horarioabrir;
-    document.getElementById("inputSaida").value = museu.horariosair;
-    document.getElementById("inputTema").value = museu.tema;
-    document.getElementById("inputCapacidade").value = museu.capacidade;
-    document.getElementById("inputFundacao").value = museu.fundacao;
-    document.getElementById("inputEndereco").value = museu.endereco;
-    document.getElementById("inputPreco").value = museu.preco;
-
-    document.getElementById("formEdicao").classList.add("show");
-}
-
-
-document.getElementById("formEdicao").addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    const id = document.getElementById("inputId").value;
-
-    const museuAtualizado = {
-        museu: document.getElementById("inputNome").value,
-        descricaomuseu: document.getElementById("inputDescricao").value,
-        horarioabrir: document.getElementById("InputEntrada").value,
-        horariosair: document.getElementById("inputSaida").value,
-        tema: document.getElementById("inputTema").value,
-        capacidade: document.getElementById("inputCapacidade").value,
-        fundacao: document.getElementById("inputFundacao").value,
-        endereco: document.getElementById("inputEndereco").value,
-        preco: document.getElementById("inputPreco").value
-    };
-
-    const resposta = await fetch(`http://localhost:8080/api/admin/museus/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(museuAtualizado)
-    });
-
-    if (resposta.ok) {
-        alert("Museu atualizado com sucesso!");
-        fecharFormulario();
-        carregarMuseus();
-    } else {
-        alert("Erro ao atualizar museu.");
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    listarMuseu = new ListarMuseu();
 });

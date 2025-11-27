@@ -4,12 +4,13 @@ body {
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
 }
 
+/* TOP BAR - MENU LATERAL */
 .top-bar {
   position: fixed;
   top: 0;
@@ -25,6 +26,7 @@ body {
   align-items: center;
   text-align: center;
   z-index: 1000;
+  overflow-y: auto;
 }
 
 .top-bar h1,
@@ -57,198 +59,261 @@ body {
   width: 100%;
   justify-content: center;
   border-radius: 10px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
 }
 
 .top-bar .btn-action {
   background: rgba(255, 255, 255, 0.15);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .top-bar .btn-action:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-container,
+/* CONTEÚDO PRINCIPAL */
+.dashboard-container {
+  margin-left: 280px;
+  margin-right: 20px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  max-width: calc(100% - 300px);
+}
+
 .hero-image {
   margin-left: 260px;
 }
 
-.dashboard-container {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  padding: 0.4rem;             
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-  margin-top: 1rem;
-
-  margin-left: 260px;
-  margin-right: 20px;
-
-  max-width: calc(100% - 270px);
-
-  transition: all 0.3s ease;
-}
-
-
-header h1 {
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.btn-action {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-weight: 500;
-  border-radius: 12px;
-  padding: 0.6rem 1.2rem;
-  transition: all 0.2s ease;
-}
-
-.btn-action:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.card {
+/* CARD PRINCIPAL */
+.dashboard-container .card {
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
-  overflow: hidden;
-  background: transparent;
   border: none;
-}
-
-.card-header {
-  font-size: 1.1rem;
-  text-align: center;
-  letter-spacing: 0.5px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 .card-header.custom-orange {
-  background-color: #be825a;
-  color: rgb(255, 255, 255);
+  background: linear-gradient(135deg, #be825a, #a56a44);
+  color: white;
   font-weight: bold;
   text-align: center;
   letter-spacing: 0.5px;
+  border: none;
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+}
+
+/* TABELA */
+.table-responsive {
+  border-radius: 0 0 16px 16px;
+  overflow: hidden;
 }
 
 thead.custom-header {
-  background-color: #d1410c;
+  background: linear-gradient(135deg, #d1410c, #b33608);
   color: white;
+  border: none;
 }
 
+.table {
+  margin-bottom: 0;
+  font-size: 0.85rem;
+}
+
+.table th {
+  font-weight: 600;
+  padding: 0.8rem 0.6rem;
+  border-bottom: 2px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table td {
+  padding: 0.6rem;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(190, 130, 90, 0.05);
+}
+
+/* BOTÕES NA TABELA */
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+  border: none;
+  color: #212529;
+  font-weight: 500;
+}
+
+.btn-warning:hover {
+  background: linear-gradient(135deg, #e0a800, #d39e00);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(255, 193, 7, 0.3);
+}
+
+/* FORMULÁRIO DE EDIÇÃO - CORRIGIDO */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9998;
+    display: none;
+}
+
+#overlay.show {
+    display: block;
+}
+
+#formEdicao {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    background: white;
+    border: 3px solid #d1410c;
+    border-radius: 16px;
+    padding: 2rem;
+    z-index: 9999;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    display: none;
+    overflow-y: auto;
+}
+
+#formEdicao.show {
+    display: block;
+}
+
+/* BOTÃO FECHAR */
+.btn-close-form {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #d1410c;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-close-form:hover {
+    background: #f8f9fa;
+    transform: scale(1.1);
+}
+
+/* FORMULÁRIO DE EDIÇÃO - CORRIGIDO */
+#overlay {
+    display: none !important;
+}
+
+#formEdicao {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    background: white;
+    border: 3px solid #d1410c;
+    border-radius: 16px;
+    padding: 2rem;
+    z-index: 10000;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    display: none;
+    overflow-y: auto;
+}
+
+/* Garantir que o formulário seja clicável */
+#formEdicao * {
+    pointer-events: auto;
+}
+
+/* Overlay não deve ser clicável - só para fundo */
+#overlay {
+    pointer-events: auto; /* Isso permite que clicks passem através do overlay */
+}
+
+/* MENSAGENS */
+#msgEdicao {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+/* TÍTULOS */
 .display-5.fw-bold.texto-laranja {
   color: #ffffff;
   font-weight: bold;
   text-align: center;
   letter-spacing: 0.5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.table {
-  font-size: 0.75rem;
+/* EASTER EGG */
+.thumb {
+  display: inline-block;
+  width: 200px;
+  height: 250px;
+  overflow: hidden;
+  margin-top: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-#tabelaEventos {
-  width: 80%;
-  margin: 0 auto;
-}
-
-
-.table th, 
-.table td {
-  padding: 4px 6px;
-  text-align: center;
-  vertical-align: middle;
-  margin: auto;
-}
-
-.btn-sm {
-  padding: 3px 6px;
-  font-size: 0.8rem;
-}
-
-#formEdicao {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  width: 95%;
-  max-width: 900px;
-  max-height: 90vh;
-  background: white;
-  border: 2px solid #d1410c;
-  border-radius: 16px;
-  padding: 1.5rem;
-  z-index: 1000;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  overflow-y: auto;
-}
-
-#formEdicao.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+.thumb img {
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
-  z-index: 999;
+  object-fit: cover;
   opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
+  transform: scale(1.02);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-#overlay.show {
+.thumb:hover img {
   opacity: 1;
-  visibility: visible;
+  transform: scale(1);
+  pointer-events: auto;
+  transition: opacity 1s ease, transform 1s ease;
 }
 
-#formEdicao label {
-  margin-top: 0.6rem;
-  font-weight: 500;
-  color: #333;
-  font-size: 0.9rem;
-}
-
-#formEdicao input {
-  margin-bottom: 0.8rem;
-  border-radius: 8px;
-  border: 1px solid #ced4da;
-  padding: 0.5rem;
-  width: 100%;
-  font-size: 0.9rem;
-}
-
-#formEdicao button {
-  margin-top: 1rem;
-  border-radius: 10px;
-  font-weight: 600;
-  padding: 0.5rem 1.5rem;
-}
-
-#msgEdicao {
-  font-size: 0.9rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-.btn-close-form {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #d1410c;
-  cursor: pointer;
+/* RESPONSIVIDADE */
+@media (max-width: 1024px) {
+  .dashboard-container {
+    margin-left: 280px;
+    max-width: calc(100% - 300px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -257,43 +322,77 @@ thead.custom-header {
     height: auto;
     position: relative;
     flex-direction: column;
+    padding: 1rem;
   }
 
   .dashboard-container,
   .hero-image {
     margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+
+  .dashboard-container {
+    margin: 1rem;
   }
 
   .actions-bar {
     flex-direction: column;
   }
+
+  #formEdicao {
+    width: 95%;
+    padding: 1.5rem;
+    max-height: 80vh;
+  }
+
+  .table {
+    font-size: 0.8rem;
+  }
+
+  .btn-sm {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
 }
 
-/* Easter Egg */
-
-  .thumb {
-    display: inline-block;
-    width: 200px;
-    height: 250px;
-    overflow: hidden;
+@media (max-width: 480px) {
+  .dashboard-container {
+    margin: 0.5rem;
   }
 
-  .thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-    opacity: 0;
-    transform: scale(1.02);
-    pointer-events: none;
-
-    transition: opacity 0.2s ease, transform 0.2s ease;
+  #formEdicao {
+    padding: 1rem;
+    max-height: 75vh;
   }
 
-  .thumb:hover img {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-
-    transition: opacity 1s ease, transform 1s ease; /* entrada lenta */
+  .card-header.custom-orange {
+    font-size: 1rem;
+    padding: 0.8rem;
   }
+
+  .table th,
+  .table td {
+    padding: 0.4rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* SCROLLBAR PERSONALIZADA */
+#formEdicao::-webkit-scrollbar {
+  width: 8px;
+}
+
+#formEdicao::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+#formEdicao::-webkit-scrollbar-thumb {
+  background: #d1410c;
+  border-radius: 4px;
+}
+
+#formEdicao::-webkit-scrollbar-thumb:hover {
+  background: #a83208;
+}

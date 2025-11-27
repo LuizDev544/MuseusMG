@@ -1,53 +1,175 @@
-async function abrirEdicao(id) {
+// FrontEnd/scripts/museus/editar-museu.js
+console.log("📁 Editar.js carregado com sucesso");
 
-    let resposta = await fetch(`http://localhost:8080/api/museus/${id}`);
-    let m = await resposta.json();
+class EditarMuseuManager {
+    constructor() {
+        console.log("🔄 Inicializando EditarMuseuManager...");
+        this.init();
+    }
 
-    document.getElementById("inputId").value = m.id;
-    document.getElementById("inputNome").value = m.museu;
-    document.getElementById("inputDescricao").value = m.descricaomuseu;
-    document.getElementById("InputEntrada").value = m.horarioabrir;
-    document.getElementById("inputSaida").value = m.horariosair;
-    document.getElementById("inputTema").value = m.tema;
-    document.getElementById("inputCapacidade").value = m.capacidade;
-    document.getElementById("inputFundacao").value = m.fundacao;
-    document.getElementById("inputEndereco").value = m.endereco;
-    document.getElementById("inputPreco").value = m.preco;
+    init() {
+        console.log("✅ Editor de museus inicializado");
+        this.configurarFormulario();
+        this.definirFuncoesGlobais();
+    }
 
-    document.getElementById("formEdicao").classList.add("show");
-}
+    definirFuncoesGlobais() {
+        window.abrirEdicao = (id) => {
+            console.log(`🔘 abrirEdicao chamado para ID: ${id}`);
+            this.abrirEdicao(id);
+        };
 
-function fecharFormulario() {
-    document.getElementById("formEdicao").classList.remove("show");
-    document.getElementById("overlay").classList.remove("show");
-}
+        window.fecharFormulario = () => {
+            console.log("🔘 fecharFormulario chamado");
+            this.fecharFormulario();
+        };
 
-document.getElementById("formEdicao").addEventListener("submit", function (e) {
-    e.preventDefault();
+        console.log("🌍 Funções globais definidas");
+    }
 
-    const data = {
-        id: document.getElementById("inputId").value,
-        museu: document.getElementById("inputNome").value,
-        descricaomuseu: document.getElementById("inputDescricao").value,
-        horarioabrir: document.getElementById("InputEntrada").value,
-        horariosair: document.getElementById("inputSaida").value,
-        tema: document.getElementById("inputTema").value,
-        capacidade: document.getElementById("inputCapacidade").value,
-        fundacao: document.getElementById("inputFundacao").value,
-        endereco: document.getElementById("inputEndereco").value,
-        preco: document.getElementById("inputPreco").value
-    };
+    async abrirEdicao(id) {
+        try {
+            console.log(`✏️ Abrindo edição do museu ID: ${id}`);
+            
+            const token = localStorage.getItem('jwtToken');
+            if (!token) {
+                throw new Error('Token não encontrado');
+            }
 
-    fetch(`http://localhost:8080/api/museus/${data.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    })
-        .then(r => r.json())
-        .then(() => {
+            const response = await fetch(`http://localhost:8080/api/admin/museus/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Erro ${response.status} ao carregar museu`);
+            }
+
+            const museu = await response.json();
+            
+            console.log("📦 Dados do museu recebidos:", museu);
+            
+            this.preencherFormulario(museu);
+            this.mostrarFormulario();
+            
+        } catch (error) {
+            console.error('❌ Erro ao carregar museu para edição:', error);
+            alert('Erro ao carregar dados do museu: ' + error.message);
+        }
+    }
+
+    preencherFormulario(museu) {
+        try {
+            console.log("🔍 Preenchendo formulário com dados:", museu);
+            
+            // Use os nomes EXATOS que o backend retorna
+            document.getElementById("inputId").value = museu.id;
+            document.getElementById("inputNome").value = museu.museu || '';
+            document.getElementById("inputDescricao").value = museu.descricaomuseu || '';
+            document.getElementById("InputEntrada").value = museu.horarioabrir || '';
+            document.getElementById("inputSaida").value = museu.horariosair || '';
+            document.getElementById("inputTema").value = museu.tema || '';
+            document.getElementById("inputCapacidade").value = museu.capacidade || '';
+            document.getElementById("inputFundacao").value = museu.fundacao || '';
+            document.getElementById("inputEndereco").value = museu.endereco || '';
+            document.getElementById("inputPreco").value = museu.preco || '';
+
+            console.log("✅ Formulário preenchido com sucesso");
+            
+        } catch (error) {
+            console.error('❌ Erro ao preencher formulário:', error);
+        }
+    }
+
+    mostrarFormulario() {
+        const form = document.getElementById("formEdicao");
+        const overlay = document.getElementById("overlay");
+        
+        console.log("🔍 Mostrar formulário - Elementos:", {
+            form: !!form,
+            overlay: !!overlay
+        });
+
+        if (form && overlay) {
+            form.style.display = 'block';
+            overlay.style.display = 'block';
+            console.log("📋 Formulário ABERTO");
+        } else {
+            console.error("❌ Formulário ou overlay não encontrado");
+        }
+    }
+
+    fecharFormulario() {
+        const form = document.getElementById("formEdicao");
+        const overlay = document.getElementById("overlay");
+        
+        if (form && overlay) {
+            form.style.display = 'none';
+            overlay.style.display = 'none';
+            console.log("📋 Formulário FECHADO");
+        }
+    }
+
+    configurarFormulario() {
+        const form = document.getElementById("formEdicao");
+        if (form) {
+            form.addEventListener("submit", (e) => this.salvarEdicao(e));
+            console.log("✅ Formulário de edição configurado");
+        } else {
+            console.error("❌ Formulário de edição não encontrado");
+        }
+    }
+
+    async salvarEdicao(event) {
+        event.preventDefault();
+        console.log("💾 Iniciando salvamento...");
+        
+        try {
+            // Obter dados diretamente dos inputs pelos seus names
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            console.log("📤 Dados para salvar:", data);
+
+            const token = localStorage.getItem('jwtToken');
+            const response = await fetch(`http://localhost:8080/api/admin/museus/${data.id}`, {
+                method: "PUT",
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error("❌ Erro detalhado:", errorText);
+                throw new Error(`Erro ${response.status}: ${response.statusText}`);
+            }
+
+            const resultado = await response.json();
+            console.log("✅ Museu atualizado:", resultado);
+
             alert("Museu atualizado com sucesso!");
-            fecharFormulario();
-            location.reload();
-        })
-        .catch(() => alert("Erro ao atualizar."));
-});
+            this.fecharFormulario();
+            
+            // Recarregar a lista
+            if (window.listarMuseu && window.listarMuseu.carregarMuseus) {
+                await window.listarMuseu.carregarMuseus();
+            } else {
+                location.reload();
+            }
+            
+        } catch (error) {
+            console.error('❌ Erro ao atualizar museu:', error);
+            alert("Erro ao atualizar museu: " + error.message);
+        }
+    }
+}
+
+// Inicialização
+console.log("🚀 Criando EditarMuseuManager...");
+window.editarMuseuManager = new EditarMuseuManager();
