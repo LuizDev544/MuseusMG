@@ -20,7 +20,7 @@ document.getElementById("newsletterForm").addEventListener("submit", async (e) =
 
         if (resposta.ok) {
             alert("Obrigado! Verifique seu e-mail.");
-            document.getElementById("emailInput").value = ""; // Limpa o campo
+            document.getElementById("emailInput").value = ""; 
         } else {
             alert("Erro: " + mensagem);
         }
