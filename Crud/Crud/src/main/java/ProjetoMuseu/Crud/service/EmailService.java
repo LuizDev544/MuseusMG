@@ -11,16 +11,23 @@ import jakarta.mail.internet.MimeMessage;
 
 @Service
 public class EmailService {
+    
     @Autowired
     private JavaMailSender mailSender;
 
-    public void enviarEmailBoasVindas(String destinatario) {
+    public boolean enviarEmailBoasVindas(String destinatario) {
         try {
+            // Validação básica do email
+            if (destinatario == null || !destinatario.contains("@")) {
+                return false;
+            }
+
             MimeMessage mensagem = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mensagem, true);
+            MimeMessageHelper helper = new MimeMessageHelper(mensagem, true, "UTF-8");
 
             helper.setTo(destinatario);
             helper.setSubject("Obrigado por visitar nosso site!");
+            helper.setFrom("luizfernando.carrupt@gmail.com"); // Adicione o remetente
             
             String html = """
                 <div style="font-family: Arial; padding: 20px;">
@@ -35,9 +42,11 @@ public class EmailService {
             helper.setText(html, true);
 
             mailSender.send(mensagem);
+            return true;
 
         } catch (MessagingException | MailException e) {
+            System.err.println("Erro ao enviar email: " + e.getMessage());
+            return false;
         }
     }
-
 }

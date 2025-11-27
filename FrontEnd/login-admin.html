@@ -72,13 +72,10 @@
         </div>
     </div>
 
-    <!-- Scripts NA ORDEM CORRETA -->
     <script src="scripts/security-config.js"></script>
     <script src="scripts/admin-auth.js"></script>
 
-    <!-- Script de debug (opcional) -->
     <script>
-    // Funções de debug disponíveis globalmente
     function debugCheckAuth() {
         const token = localStorage.getItem('jwtToken');
         const userData = localStorage.getItem('userData');

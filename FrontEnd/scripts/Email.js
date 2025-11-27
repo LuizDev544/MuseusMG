@@ -1,17 +1,31 @@
 document.getElementById("newsletterForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById("emailInput").value;
+    const email = document.getElementById("emailInput").value.trim();
 
-    const resposta = await fetch("http://localhost:8080/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email })
-    });
+    // Validação básica no frontend
+    if (!email || !email.includes('@')) {
+        alert("Por favor, insira um email válido.");
+        return;
+    }
 
-    if (resposta.ok) {
-        alert("Obrigado! Verifique seu e-mail.");
-    } else {
-        alert("Erro ao enviar. Tente novamente.");
+    try {
+        const resposta = await fetch("http://localhost:8080/api/newsletter", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email })
+        });
+
+        const mensagem = await resposta.text();
+
+        if (resposta.ok) {
+            alert("Obrigado! Verifique seu e-mail.");
+            document.getElementById("emailInput").value = ""; // Limpa o campo
+        } else {
+            alert("Erro: " + mensagem);
+        }
+    } catch (error) {
+        console.error("Erro:", error);
+        alert("Erro de conexão. Tente novamente.");
     }
 });

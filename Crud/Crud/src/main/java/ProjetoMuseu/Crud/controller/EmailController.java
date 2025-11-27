@@ -8,20 +8,27 @@ import ProjetoMuseu.Crud.service.EmailService;
 
 @RestController
 @RequestMapping("/api/newsletter")
-@CrossOrigin(origins = "*") 
+@CrossOrigin(origins = {"http://127.0.0.1:5500", "http://localhost:5500"})
 public class EmailController {
 
     private final EmailService emailService;
 
-    // Injeção de dependência via construtor
     public EmailController(EmailService emailService) {
         this.emailService = emailService;
     }
 
-    // Endpoint para cadastrar um email na newsletter e mandar uma mensagem de boas-vindas de forma pública
     @PostMapping
     public ResponseEntity<String> cadastrar(@RequestBody EmailRequest request) {
-        emailService.enviarEmailBoasVindas(request.getEmail());
-        return ResponseEntity.ok("Email enviado!");
+        if (request.getEmail() == null || request.getEmail().trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("Email é obrigatório");
+        }
+
+        boolean emailEnviado = emailService.enviarEmailBoasVindas(request.getEmail());
+        
+        if (emailEnviado) {
+            return ResponseEntity.ok("Email de boas-vindas enviado com sucesso!");
+        } else {
+            return ResponseEntity.status(500).body("Erro ao enviar email. Tente novamente.");
+        }
     }
 }
