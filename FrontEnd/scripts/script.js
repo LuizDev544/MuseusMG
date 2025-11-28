@@ -1,4 +1,4 @@
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 60) {
         navbar.classList.add('scrolled');
@@ -10,7 +10,7 @@ window.addEventListener('scroll', function() {
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const nav = document.querySelector('.navbar nav');
 
-mobileMenuBtn.addEventListener('click', function() {
+mobileMenuBtn.addEventListener('click', function () {
     if (nav.style.display === 'flex') {
         nav.style.display = 'none';
     } else {
@@ -32,7 +32,7 @@ mobileMenuBtn.addEventListener('click', function() {
 let currentSlide = 1;
 const totalSlides = 3;
 
-let carouselInterval = setInterval(function() {
+let carouselInterval = setInterval(function () {
     document.getElementById(`slide${currentSlide}`).checked = false;
     currentSlide = currentSlide % totalSlides + 1;
     document.getElementById(`slide${currentSlide}`).checked = true;
@@ -40,12 +40,12 @@ let carouselInterval = setInterval(function() {
 
 const carousel = document.querySelector('.carousel');
 
-carousel.addEventListener('mouseenter', function() {
+carousel.addEventListener('mouseenter', function () {
     clearInterval(carouselInterval);
 });
 
-carousel.addEventListener('mouseleave', function() {
-    carouselInterval = setInterval(function() {
+carousel.addEventListener('mouseleave', function () {
+    carouselInterval = setInterval(function () {
         document.getElementById(`slide${currentSlide}`).checked = false;
         currentSlide = currentSlide % totalSlides + 1;
         document.getElementById(`slide${currentSlide}`).checked = true;
@@ -54,7 +54,7 @@ carousel.addEventListener('mouseleave', function() {
 
 const fadeElements = document.querySelectorAll('.fade-in');
 
-const fadeInOnScroll = function() {
+const fadeInOnScroll = function () {
     fadeElements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
         const elementVisible = 150;
@@ -69,7 +69,7 @@ fadeInOnScroll();
 
 const newsletterForm = document.querySelector('.newsletter-form');
 
-newsletterForm.addEventListener('submit', function(e) {
+newsletterForm.addEventListener('submit', function (e) {
     e.preventDefault();
     const email = this.querySelector('input[type="email"]').value;
 
@@ -82,7 +82,7 @@ newsletterForm.addEventListener('submit', function(e) {
     setTimeout(() => {
         submitBtn.textContent = 'Subscribed!';
         submitBtn.style.background = 'var(--success)';
-        
+
         setTimeout(() => {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
@@ -141,7 +141,7 @@ function aplicarImagemNosCards() {
 
 function filterMuseumsByTheme(theme) {
     const cards = document.querySelectorAll('.museum-card');
-    
+
     cards.forEach(card => {
         const cardTheme = card.querySelector('.card-badge').textContent.toLowerCase();
         card.style.display = (theme === 'all' || cardTheme.includes(theme.toLowerCase())) ? 'block' : 'none';
@@ -150,7 +150,7 @@ function filterMuseumsByTheme(theme) {
 
 function addFilterButtons() {
     const sectionTitle = document.querySelector('.section-title');
-    
+
     const filterHTML = `
         <div class="museum-filters">
             <button class="filter-btn active" data-filter="all">Todos</button>
@@ -160,11 +160,11 @@ function addFilterButtons() {
             <button class="filter-btn" data-filter="interativo">Interativo</button>
         </div>
     `;
-    
+
     sectionTitle.insertAdjacentHTML('afterend', filterHTML);
-    
+
     document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function () {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             filterMuseumsByTheme(this.dataset.filter);
@@ -185,7 +185,7 @@ function searchMuseums() {
 
 const searchForm = document.querySelector('.museums form');
 
-searchForm.addEventListener('submit', function(e) {
+searchForm.addEventListener('submit', function (e) {
     e.preventDefault();
     searchMuseums();
 });

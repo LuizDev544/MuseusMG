@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../FrontEnd/styles/paineladm.css">
 </head>
+
 <body>
     <div class="top-bar">
         <div class="container text-center py-4">
@@ -31,9 +33,9 @@
             </div>
         </div>
     </div>
-    
+
     <section class="hero-image"></section>
-    
+
     <div class="container py-4 dashboard-container">
         <div class="card shadow-sm">
             <div class="card-header custom-orange">
@@ -57,14 +59,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Dados carregados via JavaScript -->
+
                     </tbody>
                 </table>
-                
-                <!-- Formulário de Edição -->
+
                 <form id="formEdicao" style="display: none;">
                     <button type="button" class="btn-close-form" onclick="fecharFormulario()">×</button>
-                    <h5 class="mb-3" style="color: #e2ad7c;">✏️ Editar Museu</h5>  
+                    <h5 class="mb-3" style="color: #e2ad7c;">✏️ Editar Museu</h5>
                     <input type="hidden" id="inputId" name="id">
                     <div class="row g-3">
                         <div class="col-md-4">
@@ -77,7 +78,8 @@
                         </div>
                         <div class="col-md-2">
                             <label for="inputCapacidade" class="form-label">Capacidade:</label>
-                            <input type="number" step="0.01" id="inputCapacidade" name="capacidade" class="form-control">
+                            <input type="number" step="0.01" id="inputCapacidade" name="capacidade"
+                                class="form-control">
                         </div>
                     </div>
                     <div class="row g-3 mt-2">
@@ -118,68 +120,62 @@
         </div>
     </div>
 
-    <!-- Overlay para o formulário --> 
     <div id="overlay" style="display: none;"></div>
 
-    <!-- Scripts NA ORDEM CORRETA -->
     <script src="scripts/security-config.js"></script>
     <script src="scripts/protected-auth.js"></script>
     <script src="scripts/ListarMuseu.js"></script>
     <script src="scripts/Editar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    
+
     <script>
-    // Sistema de autenticação do painel
-    if (typeof ProtectedAuth !== 'undefined') {
-        class PainelADMAuth extends ProtectedAuth {
-            onAuthenticationSuccess(username) {
-                console.log(`🎉 Painel ADM carregado para: ${username}`);
-                
-                // Inicializar funcionalidades do painel
+        if (typeof ProtectedAuth !== 'undefined') {
+            class PainelADMAuth extends ProtectedAuth {
+                onAuthenticationSuccess(username) {
+                    console.log(`🎉 Painel ADM carregado para: ${username}`);
+
+                    if (typeof listarMuseu !== 'undefined' && listarMuseu.init) {
+                        listarMuseu.init();
+                    }
+
+                    if (typeof feather !== 'undefined') {
+                        feather.replace();
+                    }
+
+                    this.showAuthenticatedStatus(username);
+                }
+
+                showAuthenticatedStatus(username) {
+                    const header = document.querySelector('header');
+                    if (header) {
+                        const statusDiv = document.createElement('div');
+                        statusDiv.className = 'alert alert-success mt-3';
+                        statusDiv.innerHTML = `✅ Logado como: <strong>${username}</strong>`;
+                        header.appendChild(statusDiv);
+                    }
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log("🚀 Inicializando Painel ADM...");
+                new PainelADMAuth().init();
+            });
+
+        } else {
+            console.error("❌ ProtectedAuth não está disponível");
+
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log("🔄 Inicializando sem autenticação...");
                 if (typeof listarMuseu !== 'undefined' && listarMuseu.init) {
                     listarMuseu.init();
                 }
-                
-                // Inicializar ícones
                 if (typeof feather !== 'undefined') {
                     feather.replace();
                 }
-                
-                this.showAuthenticatedStatus(username);
-            }
-
-            showAuthenticatedStatus(username) {
-                const header = document.querySelector('header');
-                if (header) {
-                    const statusDiv = document.createElement('div');
-                    statusDiv.className = 'alert alert-success mt-3';
-                    statusDiv.innerHTML = `✅ Logado como: <strong>${username}</strong>`;
-                    header.appendChild(statusDiv);
-                }
-            }
+            });
         }
-
-        // Inicialização
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("🚀 Inicializando Painel ADM...");
-            new PainelADMAuth().init();
-        });
-
-    } else {
-        console.error("❌ ProtectedAuth não está disponível");
-        
-        // Fallback
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("🔄 Inicializando sem autenticação...");
-            if (typeof listarMuseu !== 'undefined' && listarMuseu.init) {
-                listarMuseu.init();
-            }
-            if (typeof feather !== 'undefined') {
-                feather.replace();
-            }
-        });
-    }
     </script>
 </body>
+
 </html>

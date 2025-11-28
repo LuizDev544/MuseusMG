@@ -41,7 +41,6 @@ public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
     logger.info("Tentativa de login JWT para: {}", loginRequest.getEmail());
     
     try {
-        // Primeiro tenta autenticar
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getSenha())
         );
@@ -52,7 +51,6 @@ public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         
         logger.info("LOGIN JWT SUCESSO - Usuário: {}, Role: {}", loginRequest.getEmail(), role);
 
-        // Retorna resposta mais clara
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Login realizado com sucesso");
         response.put("token", token);
@@ -77,18 +75,18 @@ public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
 @PostMapping("/validate")
 public ResponseEntity<TokenValidationResponse> validateToken(@RequestBody TokenValidationRequest request) {
     String token = request.getToken();
-    System.out.println("🔐 Validando token: " + token.substring(0, 20) + "...");
+    System.out.println("Validando token: " + token.substring(0, 20) + "...");
     
     if (jwtUtil.validateToken(token)) {
         String username = jwtUtil.extractUsername(token);
         String role = authService.getRoleFromDatabase(username);
         
-        System.out.println("✅ Token VÁLIDO para: " + username + " - Role: " + role);
+        System.out.println("Token VÁLIDO para: " + username + " - Role: " + role);
         
         return ResponseEntity.ok(TokenValidationResponse.valid(username, role));
     }
     
-    System.out.println("❌ Token INVÁLIDO");
+    System.out.println("Token INVÁLIDO");
     return ResponseEntity.ok(TokenValidationResponse.invalid());
 }
 }

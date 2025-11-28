@@ -1,16 +1,13 @@
-// museums-api.js - Sistema para buscar museus do banco de dados Spring Boot
-
 class MuseumsAPI {
     constructor() {
-        this.baseURL = 'http://localhost:8080/api'; // URL do seu backend Spring
+        this.baseURL = 'http://localhost:8080/api';
         this.museums = [];
     }
 
-    // Buscar todos os museus do banco de dados (endpoint público)
     async fetchMuseums() {
         try {
             console.log('Buscando museus do backend...');
-            
+
             const response = await fetch(`${this.baseURL}/public/museus`, {
                 method: 'GET',
                 headers: {
@@ -28,14 +25,12 @@ class MuseumsAPI {
 
         } catch (error) {
             console.error('Erro ao buscar museus:', error);
-            
-            // Fallback: dados mock para demonstração (remova em produção)
+
             console.warn('Usando dados mock devido ao erro de conexão');
             return this.getMockMuseums();
         }
     }
 
-    // Dados mock para demonstração (usar apenas em desenvolvimento)
     getMockMuseums() {
         return [
             {
@@ -77,11 +72,10 @@ class MuseumsAPI {
         ];
     }
 
-    // Buscar museu específico por ID (endpoint público)
     async getMuseumById(id) {
         try {
             console.log(`Buscando museu ID: ${id}`);
-            
+
             const response = await fetch(`${this.baseURL}/public/museus/${id}`, {
                 method: 'GET',
                 headers: {
@@ -102,15 +96,13 @@ class MuseumsAPI {
 
         } catch (error) {
             console.error('Erro ao buscar museu:', error);
-            // Fallback para dados mock
             return this.getMockMuseums().find(museum => museum.id === id);
         }
     }
 
-    // ADMIN: Criar novo museu
     async createMuseum(museumData) {
         try {
-            const token = this.getAuthToken(); // Implementar sistema de autenticação
+            const token = this.getAuthToken();
             const response = await fetch(`${this.baseURL}/admin/museus`, {
                 method: 'POST',
                 headers: {
@@ -131,7 +123,6 @@ class MuseumsAPI {
         }
     }
 
-    // ADMIN: Atualizar museu
     async updateMuseum(id, museumData) {
         try {
             const token = this.getAuthToken();
@@ -155,7 +146,6 @@ class MuseumsAPI {
         }
     }
 
-    // ADMIN: Deletar museu
     async deleteMuseum(id) {
         try {
             const token = this.getAuthToken();
@@ -192,7 +182,6 @@ class MuseumsAPI {
         return imageMap[museum.tema] || '../FrontEnd/Imagens/MuseuDaArteContemporanea.jpg';
     }
 
-    // Gerar badge baseado no tema
     getMuseumBadge(museum) {
         const badgeMap = {
             'Arte': 'Arte',
@@ -207,27 +196,24 @@ class MuseumsAPI {
         return badgeMap[museum.tema] || 'Em Destaque';
     }
 
-    // Formatar horário
     formatSchedule(open, close) {
         if (!open || !close) return 'Horário não informado';
         return `${open} às ${close}`;
     }
 
-    // Formatar preço
     formatPrice(price) {
         if (!price && price !== 0) return 'Gratuito';
-        
+
         return new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
         }).format(price);
     }
 
-    // Validar dados do museu
     validateMuseumData(museum) {
         const requiredFields = ['museu', 'descricaomuseu', 'tema'];
         const missingFields = requiredFields.filter(field => !museum[field]);
-        
+
         if (missingFields.length > 0) {
             throw new Error(`Campos obrigatórios faltando: ${missingFields.join(', ')}`);
         }
@@ -243,9 +229,7 @@ class MuseumsAPI {
         return true;
     }
 
-    // Criar card HTML para um museu
     createMuseumCard(museum) {
-        // Validar dados básicos
         if (!museum || !museum.museu) {
             console.error('Dados do museu inválidos:', museum);
             return '';
@@ -260,7 +244,7 @@ class MuseumsAPI {
             <div class="museum-card fade-in" data-id="${museum.id}">
                 <div class="card-badge">${badge}</div>
                 <div class="img" style="background-image: url('${imageUrl}');" 
-                     onerror="this.style.backgroundImage='url(../FrontEnd/Imagens/MuseuDaArteContemporanea.jpg)'"></div>
+                    onerror="this.style.backgroundImage='url(../FrontEnd/Imagens/MuseuDaArteContemporanea.jpg)'"></div>
                 <div class="info">
                     <h3>${this.escapeHtml(museum.museu)}</h3>
                     <div class="museum-meta">
@@ -302,29 +286,25 @@ class MuseumsAPI {
         `;
     }
 
-    // Utilitário para escapar HTML
     escapeHtml(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
 
-    // Utilitário para truncar texto
     truncateText(text, maxLength) {
         if (text.length <= maxLength) return text;
         return text.substring(0, maxLength) + '...';
     }
 
-    // Renderizar todos os cards
     async renderMuseums() {
         const grid = document.getElementById('museumsGrid');
-        
+
         if (!grid) {
             console.error('Elemento museumsGrid não encontrado');
             return;
         }
 
-        // Mostrar loading
         grid.innerHTML = `
             <div class="loading-message">
                 <i class="fas fa-spinner fa-spin"></i>
@@ -334,7 +314,7 @@ class MuseumsAPI {
 
         try {
             const museums = await this.fetchMuseums();
-            
+
             if (!museums || museums.length === 0) {
                 grid.innerHTML = `
                     <div class="no-museums">
@@ -346,11 +326,9 @@ class MuseumsAPI {
                 return;
             }
 
-            // Gerar cards
             const cardsHTML = museums.map(museum => this.createMuseumCard(museum)).join('');
             grid.innerHTML = cardsHTML;
 
-            // Adicionar animação de fade-in
             setTimeout(() => {
                 const cards = document.querySelectorAll('.museum-card');
                 cards.forEach((card, index) => {
@@ -374,27 +352,21 @@ class MuseumsAPI {
         }
     }
 
-    // Obter token de autenticação (implementar conforme seu sistema de auth)
     getAuthToken() {
-        // Implemente conforme seu sistema de autenticação
-        // Exemplo: return localStorage.getItem('authToken');
-        return 'seu-token-aqui';
+        return 'token-test';
     }
 }
 
-// Instância global da API
 const museumsAPI = new MuseumsAPI();
 
-// Função para mostrar detalhes do museu
 async function showMuseumDetails(museumId) {
     try {
         const museum = await museumsAPI.getMuseumById(museumId);
-        
+
         if (!museum) {
             throw new Error('Museu não encontrado');
         }
 
-        // Criar modal de detalhes
         const modal = document.createElement('div');
         modal.className = 'museum-modal';
         modal.innerHTML = `
@@ -406,8 +378,8 @@ async function showMuseumDetails(museumId) {
                 </div>
                 <div class="modal-body">
                     <div class="modal-image" 
-                         style="background-image: url('${museumsAPI.getMuseumImage(museum)}')"
-                         onerror="this.style.backgroundImage='url(../FrontEnd/Imagens/MuseuDaArteContemporanea.jpg)'">
+                        style="background-image: url('${museumsAPI.getMuseumImage(museum)}')"
+                        onerror="this.style.backgroundImage='url(../FrontEnd/Imagens/MuseuDaArteContemporanea.jpg)'">
                     </div>
                     <div class="modal-info">
                         <div class="info-grid">
@@ -483,7 +455,6 @@ async function showMuseumDetails(museumId) {
 
         document.body.appendChild(modal);
 
-        // Fechar modal
         const closeBtn = modal.querySelector('.close-modal');
         closeBtn.onclick = () => modal.remove();
 
@@ -491,13 +462,11 @@ async function showMuseumDetails(museumId) {
             if (e.target === modal) modal.remove();
         };
 
-        // Fechar com ESC
         const closeHandler = (e) => {
             if (e.key === 'Escape') modal.remove();
         };
         document.addEventListener('keydown', closeHandler);
-        
-        // Remover listener quando modal fechar
+
         modal.addEventListener('remove', () => {
             document.removeEventListener('keydown', closeHandler);
         });
@@ -508,10 +477,8 @@ async function showMuseumDetails(museumId) {
     }
 }
 
-// Funções auxiliares
 function reserveTicket(museumId) {
     alert(`Redirecionando para reserva do museu ID: ${museumId}`);
-    // Implementar lógica de reserva
 }
 
 function shareMuseum(museumId) {
@@ -522,18 +489,15 @@ function shareMuseum(museumId) {
             url: window.location.href + `#museu-${museumId}`
         });
     } else {
-        // Fallback para copiar link
         navigator.clipboard.writeText(window.location.href + `#museu-${museumId}`);
         alert('Link copiado para a área de transferência!');
     }
 }
 
-// Inicializar quando a página carregar
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     museumsAPI.renderMuseums();
 });
 
-// Export para uso em outros módulos
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { MuseumsAPI, museumsAPI };
 }

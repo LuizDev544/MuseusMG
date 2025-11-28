@@ -1,4 +1,3 @@
-// FrontEnd/scripts/auth/protected-auth.js
 console.log("🛡️ ProtectedAuth carregando...");
 
 if (typeof ProtectedAuth === 'undefined') {
@@ -9,8 +8,7 @@ if (typeof ProtectedAuth === 'undefined') {
 
         async init() {
             console.log("🛡️ Inicializando proteção de página...");
-            
-            // Pequeno delay para garantir que tudo está carregado
+
             setTimeout(async () => {
                 await this.verifyAuthentication();
                 this.setupLogout();
@@ -29,27 +27,24 @@ if (typeof ProtectedAuth === 'undefined') {
                 const token = localStorage.getItem('jwtToken');
                 const userData = localStorage.getItem('userData');
 
-                console.log("🔍 Verificando autenticação...", {
+                console.log("Verificando autenticação...", {
                     token: !!token,
                     userData: !!userData
                 });
 
-                // Verificação básica
                 if (!token || !userData) {
-                    console.log("🚫 Token ou userData não encontrados");
+                    console.log("Token ou userData não encontrados");
                     this.redirectToLogin();
                     return;
                 }
 
-                // Verificar se é admin
                 const parsedUserData = JSON.parse(userData);
                 if (parsedUserData.role !== 'ROLE_ADMIN') {
-                    console.log("🚫 Usuário não é admin");
+                    console.log("Usuário não é admin");
                     this.redirectToLogin();
                     return;
                 }
 
-                // Validar token no servidor
                 console.log("🔄 Validando token no servidor...");
                 const response = await fetch('http://localhost:8080/auth/validate', {
                     method: 'POST',
@@ -72,7 +67,7 @@ if (typeof ProtectedAuth === 'undefined') {
 
                 console.log("✅ Autenticação válida - Acesso permitido");
                 this.onAuthenticationSuccess(data.usuario);
-                
+
             } catch (error) {
                 console.error('❌ Erro na verificação:', error);
                 this.redirectToLogin();
@@ -82,12 +77,11 @@ if (typeof ProtectedAuth === 'undefined') {
         }
 
         onAuthenticationSuccess(username) {
-            console.log(`🎉 ${username} autenticado com sucesso`);
-            // Esta função será sobrescrita pelas páginas específicas
+            console.log(` ${username} autenticado com sucesso`);
+
         }
 
         setupLogout() {
-            // Configurar botões de logout
             const logoutButtons = document.querySelectorAll('[data-logout="true"]');
             logoutButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
@@ -96,7 +90,6 @@ if (typeof ProtectedAuth === 'undefined') {
                 });
             });
 
-            // Manter compatibilidade com onclick="logout()"
             window.logout = () => this.logout();
         }
 
@@ -115,8 +108,7 @@ if (typeof ProtectedAuth === 'undefined') {
         }
     }
 
-    // Tornar global
     window.ProtectedAuth = ProtectedAuth;
 } else {
-    console.log("ℹ️ ProtectedAuth já foi carregado anteriormente");
+    console.log("ProtectedAuth já foi carregado anteriormente");
 }

@@ -1,14 +1,13 @@
-// FrontEnd/scripts/museus/editar-museu.js
-console.log("📁 Editar.js carregado com sucesso");
+console.log("Editar.js carregado com sucesso");
 
 class EditarMuseuManager {
     constructor() {
-        console.log("🔄 Inicializando EditarMuseuManager...");
+        console.log("Inicializando EditarMuseuManager...");
         this.init();
     }
 
     init() {
-        console.log("✅ Editor de museus inicializado");
+        console.log("Editor de museus inicializado");
         this.configurarFormulario();
         this.definirFuncoesGlobais();
     }
@@ -29,8 +28,8 @@ class EditarMuseuManager {
 
     async abrirEdicao(id) {
         try {
-            console.log(`✏️ Abrindo edição do museu ID: ${id}`);
-            
+            console.log(`Abrindo edição do museu ID: ${id}`);
+
             const token = localStorage.getItem('jwtToken');
             if (!token) {
                 throw new Error('Token não encontrado');
@@ -49,12 +48,12 @@ class EditarMuseuManager {
             }
 
             const museu = await response.json();
-            
+
             console.log("📦 Dados do museu recebidos:", museu);
-            
+
             this.preencherFormulario(museu);
             this.mostrarFormulario();
-            
+
         } catch (error) {
             console.error('❌ Erro ao carregar museu para edição:', error);
             alert('Erro ao carregar dados do museu: ' + error.message);
@@ -64,8 +63,7 @@ class EditarMuseuManager {
     preencherFormulario(museu) {
         try {
             console.log("🔍 Preenchendo formulário com dados:", museu);
-            
-            // Use os nomes EXATOS que o backend retorna
+
             document.getElementById("inputId").value = museu.id;
             document.getElementById("inputNome").value = museu.museu || '';
             document.getElementById("inputDescricao").value = museu.descricaomuseu || '';
@@ -78,7 +76,7 @@ class EditarMuseuManager {
             document.getElementById("inputPreco").value = museu.preco || '';
 
             console.log("✅ Formulário preenchido com sucesso");
-            
+
         } catch (error) {
             console.error('❌ Erro ao preencher formulário:', error);
         }
@@ -87,7 +85,7 @@ class EditarMuseuManager {
     mostrarFormulario() {
         const form = document.getElementById("formEdicao");
         const overlay = document.getElementById("overlay");
-        
+
         console.log("🔍 Mostrar formulário - Elementos:", {
             form: !!form,
             overlay: !!overlay
@@ -105,7 +103,7 @@ class EditarMuseuManager {
     fecharFormulario() {
         const form = document.getElementById("formEdicao");
         const overlay = document.getElementById("overlay");
-        
+
         if (form && overlay) {
             form.style.display = 'none';
             overlay.style.display = 'none';
@@ -126,12 +124,11 @@ class EditarMuseuManager {
     async salvarEdicao(event) {
         event.preventDefault();
         console.log("💾 Iniciando salvamento...");
-        
+
         try {
-            // Obter dados diretamente dos inputs pelos seus names
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData);
-            
+
             console.log("📤 Dados para salvar:", data);
 
             const token = localStorage.getItem('jwtToken');
@@ -155,14 +152,14 @@ class EditarMuseuManager {
 
             alert("Museu atualizado com sucesso!");
             this.fecharFormulario();
-            
+
             // Recarregar a lista
             if (window.listarMuseu && window.listarMuseu.carregarMuseus) {
                 await window.listarMuseu.carregarMuseus();
             } else {
                 location.reload();
             }
-            
+
         } catch (error) {
             console.error('❌ Erro ao atualizar museu:', error);
             alert("Erro ao atualizar museu: " + error.message);
@@ -170,6 +167,5 @@ class EditarMuseuManager {
     }
 }
 
-// Inicialização
 console.log("🚀 Criando EditarMuseuManager...");
 window.editarMuseuManager = new EditarMuseuManager();

@@ -3,7 +3,6 @@ document.getElementById("newsletterForm").addEventListener("submit", async (e) =
 
     const email = document.getElementById("emailInput").value.trim();
 
-    // Validação básica no frontend
     if (!email || !email.includes('@')) {
         alert("Por favor, insira um email válido.");
         return;
@@ -20,7 +19,7 @@ document.getElementById("newsletterForm").addEventListener("submit", async (e) =
 
         if (resposta.ok) {
             alert("Obrigado! Verifique seu e-mail.");
-            document.getElementById("emailInput").value = ""; 
+            document.getElementById("emailInput").value = "";
         } else {
             alert("Erro: " + mensagem);
         }

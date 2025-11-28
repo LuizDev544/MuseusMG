@@ -1,11 +1,10 @@
-// FrontEnd/scripts/auth/admin-auth.js
 class AdminAuth {
     constructor() {
         this.init();
     }
 
     init() {
-        console.log("🔐 Inicializando sistema de login admin...");
+        console.log(" Inicializando sistema de login admin...");
         this.setupEventListeners();
         this.checkExistingSession();
     }
@@ -23,10 +22,10 @@ class AdminAuth {
     }
 
     async checkExistingSession() {
-        console.log("🔍 Verificando sessão existente...");
-        
+        console.log("Verificando sessão existente...");
+
         if (!SecurityConfig.isAuthenticated()) {
-            console.log("ℹ️  Nenhuma sessão anterior encontrada");
+            console.log("ℹNenhuma sessão anterior encontrada");
             return;
         }
 
@@ -41,7 +40,7 @@ class AdminAuth {
             });
 
             const data = await response.json();
-            
+
             if (data.valid && data.role === 'ROLE_ADMIN') {
                 console.log("✅ Sessão válida encontrada! Redirecionando...");
                 this.redirectToPanel();
@@ -49,7 +48,7 @@ class AdminAuth {
                 console.log("❌ Sessão expirada ou inválida");
                 SecurityConfig.clearAuthData();
             }
-            
+
         } catch (error) {
             console.error("💥 Erro ao verificar sessão:", error);
             SecurityConfig.clearAuthData();
@@ -59,7 +58,7 @@ class AdminAuth {
     togglePasswordVisibility() {
         const passwordInput = document.getElementById('password');
         const icon = document.querySelector('#togglePassword i');
-        
+
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
             icon.classList.replace('fa-eye', 'fa-eye-slash');
@@ -71,10 +70,10 @@ class AdminAuth {
 
     async handleLogin(event) {
         event.preventDefault();
-        
+
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        
+
         if (!email || !password) {
             this.showMessage('Por favor, preencha todos os campos', 'error');
             return;
@@ -84,7 +83,6 @@ class AdminAuth {
         const buttonText = button.querySelector('.btn-text');
         const buttonLoader = button.querySelector('.btn-loader');
 
-        // Mostrar loading
         buttonText.style.display = 'none';
         buttonLoader.style.display = 'block';
         button.disabled = true;
@@ -104,7 +102,6 @@ class AdminAuth {
             const data = await response.json();
 
             if (response.status === 200 && data.authenticated && data.role === 'ROLE_ADMIN') {
-                // Salvar token e dados do usuário
                 localStorage.setItem('jwtToken', data.token);
                 localStorage.setItem('userData', JSON.stringify({
                     email: data.usuario,
@@ -113,14 +110,14 @@ class AdminAuth {
 
                 this.showMessage('Login realizado com sucesso! Redirecionando...', 'success');
                 this.redirectToPanel();
-                
+
             } else {
                 const errorMessage = data.message || 'Erro no login';
                 this.showMessage(errorMessage, 'error');
             }
 
         } catch (error) {
-            console.error('💥 Erro no login:', error);
+            console.error('Erro no login:', error);
             this.showMessage('Erro de conexão. Verifique se o servidor está rodando.', 'error');
         } finally {
             // Restaurar botão
@@ -161,7 +158,6 @@ class AdminAuth {
     }
 }
 
-// Inicializar quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
     new AdminAuth();
 });

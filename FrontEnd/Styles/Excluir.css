@@ -1,5 +1,5 @@
 body {
-    background-image: url('../Imagens/WallpaperPapel.jpg'); 
+    background-image: url('../Imagens/WallpaperPapel.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -13,9 +13,8 @@ body {
     align-items: center;
 }
 
-/* CONTAINER PRINCIPAL */
 .DeleteBox {
-    background: #F5F5DC !important; /* Bege claro */
+    background: #F5F5DC !important;
     border-radius: 15px;
     padding: 2.5rem;
     box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
@@ -25,9 +24,8 @@ body {
     width: 90%;
 }
 
-/* TÍTULO */
 .titulo-interno {
-    color: #8B4513 !important; /* Marrom principal */
+    color: #8B4513 !important;
     margin-bottom: 2rem;
     text-align: center;
     font-size: 1.8rem;
@@ -40,7 +38,6 @@ body {
     margin-right: 10px;
 }
 
-/* CAMPOS DO FORMULÁRIO */
 .campo {
     margin-bottom: 1.8rem;
 }
@@ -49,11 +46,10 @@ body {
     font-weight: 600;
     margin-bottom: 0.8rem;
     display: block;
-    color: #5A3B2A !important; /* Marrom escuro */
+    color: #5A3B2A !important;
     font-size: 1.1rem;
 }
 
-/* INPUT */
 .campo input {
     padding: 14px;
     border-radius: 10px;
@@ -79,9 +75,8 @@ body {
     opacity: 0.7;
 }
 
-/* BOTÃO EXCLUIR */
 .btn-excluir {
-    background: #8B4513 !important; /* Marrom principal */
+    background: #8B4513 !important;
     padding: 14px;
     border-radius: 10px;
     border: 2px solid #8B4513 !important;
@@ -97,7 +92,7 @@ body {
 }
 
 .btn-excluir:hover {
-    background: #A0522D !important; /* Marrom mais claro */
+    background: #A0522D !important;
     border-color: #A0522D !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(139, 69, 19, 0.4);
@@ -111,9 +106,8 @@ body {
     margin-right: 8px;
 }
 
-/* BOTÃO VOLTAR */
 .btn-voltar2 {
-    background: #5A3B2A !important; /* Marrom escuro */
+    background: #5A3B2A !important;
     padding: 14px;
     border-radius: 10px;
     border: 2px solid #5A3B2A !important;
@@ -133,7 +127,7 @@ body {
 }
 
 .btn-voltar2:hover {
-    background: #704B36 !important; /* Marrom escuro mais claro */
+    background: #704B36 !important;
     border-color: #704B36 !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(90, 59, 42, 0.4);
@@ -145,14 +139,12 @@ body {
     transform: translateY(0);
 }
 
-/* ÍCONES */
 .DeleteBox [data-feather] {
     width: 20px;
     height: 20px;
     stroke-width: 2;
 }
 
-/* MENSAGENS DE STATUS */
 #mensagem {
     display: block;
     text-align: center;
@@ -163,7 +155,6 @@ body {
     font-size: 1rem;
 }
 
-/* LOADING SPINNER */
 #loadingSpinner {
     background: rgba(139, 69, 19, 0.1) !important;
     backdrop-filter: blur(5px);
@@ -178,7 +169,6 @@ body {
     font-weight: 600;
 }
 
-/* ESTILOS PARA O CONTAINER BOOTSTRAP */
 .container-fluid {
     padding: 2rem 1rem;
 }
@@ -187,28 +177,27 @@ body {
     margin: 0;
 }
 
-/* RESPONSIVIDADE */
 @media (max-width: 768px) {
     .DeleteBox {
         padding: 2rem 1.5rem;
         margin: 1rem;
         width: 95%;
     }
-    
+
     .titulo-interno {
         font-size: 1.5rem;
     }
-    
+
     .campo input {
         padding: 12px;
     }
-    
+
     .btn-excluir,
     .btn-voltar2 {
         padding: 12px;
         font-size: 1rem;
     }
-    
+
     body {
         padding: 1rem;
     }
@@ -218,18 +207,17 @@ body {
     .DeleteBox {
         padding: 1.5rem 1rem;
     }
-    
+
     .titulo-interno {
         font-size: 1.3rem;
         margin-bottom: 1.5rem;
     }
-    
+
     .campo label {
         font-size: 1rem;
     }
 }
 
-/* ANIMAÇÕES E EFEITOS EXTRAS */
 .DeleteBox {
     animation: fadeInUp 0.6s ease-out;
 }
@@ -239,13 +227,13 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* ESTILOS PARA O TÍTULO h1 CENTRALIZADO */
 h1 {
     text-align: center;
     color: white;
@@ -255,7 +243,6 @@ h1 {
     font-weight: 700;
 }
 
-/* MELHORIAS DE ACESSIBILIDADE */
 .btn-excluir:focus,
 .btn-voltar2:focus,
 .campo input:focus {
@@ -263,7 +250,6 @@ h1 {
     outline-offset: 2px;
 }
 
-/* ESTADO DISABLED */
 .btn-excluir:disabled {
     background: #D2B48C !important;
     border-color: #D2B48C !important;

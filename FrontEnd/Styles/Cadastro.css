@@ -16,7 +16,7 @@ body.cadastro-bg::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(90, 59, 42, 0.6); /* Overlay marrom escuro */
+    background: rgba(90, 59, 42, 0.6);
     backdrop-filter: blur(3px);
     z-index: -1;
 }
@@ -24,13 +24,13 @@ body.cadastro-bg::before {
 .form-container {
     max-width: 900px;
     margin: 30px auto;
-    background: #F5F5DC !important; /* Bege claro */
+    background: #F5F5DC !important;
     padding: 35px;
     border-radius: 15px;
-    border: 3px solid #8B4513 !important; /* Borda marrom principal */
+    border: 3px solid #8B4513 !important;
     backdrop-filter: blur(10px);
     box-shadow: 0 12px 30px rgba(139, 69, 19, 0.4);
-    color: #5A3B2A !important; /* Texto marrom escuro */
+    color: #5A3B2A !important;
     transition: all 0.4s ease;
     position: relative;
     z-index: 1;
@@ -43,7 +43,7 @@ body.cadastro-bg::before {
 
 .title {
     text-align: center;
-    color: #8B4513 !important; /* Marrom principal */
+    color: #8B4513 !important;
     margin-bottom: 30px;
     font-size: 2.2rem;
     letter-spacing: 1px;
@@ -71,7 +71,7 @@ body.cadastro-bg::before {
 .form-group label {
     font-weight: 700;
     margin-bottom: 8px;
-    color: #5A3B2A !important; /* Marrom escuro */
+    color: #5A3B2A !important;
     font-size: 1.1rem;
     letter-spacing: 0.5px;
 }
@@ -80,7 +80,7 @@ body.cadastro-bg::before {
 .form-group textarea {
     padding: 12px 14px;
     border-radius: 8px;
-    border: 2px solid #8B4513 !important; /* Borda marrom */
+    border: 2px solid #8B4513 !important;
     background: rgba(255, 255, 255, 0.95) !important;
     font-size: 15px;
     transition: all 0.3s ease;
@@ -93,7 +93,7 @@ body.cadastro-bg::before {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #A0522D !important; /* Marrom mais claro no focus */
+    border-color: #A0522D !important;
     background: #FFFFFF !important;
     box-shadow: 0 0 12px rgba(139, 69, 19, 0.3) !important;
     transform: scale(1.02);
@@ -110,7 +110,6 @@ body.cadastro-bg::before {
     min-height: 80px;
 }
 
-/* BOTÃO PRIMÁRIO (CADASTRAR) */
 .btn-primary {
     background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%) !important;
     color: #FFFFFF !important;
@@ -142,7 +141,6 @@ body.cadastro-bg::before {
     transform: translateY(-1px);
 }
 
-/* BOTÃO SECUNDÁRIO (VOLTAR) - CORRIGIDO */
 .btn-secondary {
     background: linear-gradient(135deg, #5A3B2A 0%, #704B36 100%) !important;
     color: #FFFFFF !important;
@@ -174,7 +172,6 @@ body.cadastro-bg::before {
     transform: translateY(-1px);
 }
 
-/* ESTILO PARA O LINK DENTRO DO BOTÃO VOLTAR */
 .btn-secondary a {
     color: #FFFFFF !important;
     text-decoration: none;
@@ -188,12 +185,10 @@ body.cadastro-bg::before {
     text-decoration: none;
 }
 
-/* GRUPO DE BOTÕES - MELHOR ESPAÇAMENTO */
 .form-grid .full-width:last-of-type {
     margin-top: 10px;
 }
 
-/* MENSAGENS */
 .message {
     text-align: center;
     margin-top: 20px;
@@ -201,7 +196,7 @@ body.cadastro-bg::before {
     font-size: 1.1rem;
     padding: 12px;
     border-radius: 8px;
-    background: #D2B48C !important; /* Marrom claro para fundo */
+    background: #D2B48C !important;
     border: 1px solid #8B4513;
     color: #5A3B2A !important;
 }
@@ -218,37 +213,35 @@ body.cadastro-bg::before {
     color: #C62828 !important;
 }
 
-/* LOADING SPINNER (se aplicável) */
 .loading-spinner {
     color: #8B4513 !important;
 }
 
-/* RESPONSIVIDADE */
 @media (max-width: 768px) {
     .form-container {
         margin: 20px;
         padding: 25px 20px;
         max-width: 95%;
     }
-    
+
     .form-grid {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    
+
     .full-width {
         grid-column: span 1;
     }
-    
+
     .title {
         font-size: 1.8rem;
         margin-bottom: 25px;
     }
-    
+
     .form-group label {
         font-size: 1rem;
     }
-    
+
     .btn-primary,
     .btn-secondary {
         padding: 12px 20px;
@@ -261,17 +254,17 @@ body.cadastro-bg::before {
         padding: 20px 15px;
         margin: 15px 10px;
     }
-    
+
     .title {
         font-size: 1.6rem;
         margin-bottom: 20px;
     }
-    
+
     .form-group input,
     .form-group textarea {
         padding: 10px 12px;
     }
-    
+
     .btn-primary,
     .btn-secondary {
         padding: 11px 18px;
@@ -279,12 +272,12 @@ body.cadastro-bg::before {
     }
 }
 
-/* ANIMAÇÕES */
 @keyframes fadeInUp {
     from {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -295,7 +288,6 @@ body.cadastro-bg::before {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* ESTILOS PARA INPUTS ESPECÍFICOS */
 input[type="number"] {
     -moz-appearance: textfield;
 }
@@ -310,7 +302,6 @@ input[type="time"] {
     cursor: pointer;
 }
 
-/* MELHORIAS DE ACESSIBILIDADE */
 .form-group input:focus,
 .form-group textarea:focus,
 .btn-primary:focus,
@@ -319,7 +310,6 @@ input[type="time"] {
     outline-offset: 2px;
 }
 
-/* ESTADOS DISABLED */
 .btn-primary:disabled,
 .btn-secondary:disabled {
     background: #D2B48C !important;
@@ -330,12 +320,11 @@ input[type="time"] {
     opacity: 0.7;
 }
 
-/* SCROLL SUAVE PARA FORMULÁRIOS LONGOS */
 .form-container {
     max-height: 85vh;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: #8B4513 #F5F5DC;
+    scrollbar-color: #8B4513 #181813;
 }
 
 .form-container::-webkit-scrollbar {
@@ -356,12 +345,10 @@ input[type="time"] {
     background: #A0522D;
 }
 
-/* CORREÇÃO PARA ALINHAMENTO DOS BOTÕES */
 .form-grid {
     align-items: start;
 }
 
-/* ESPAÇAMENTO ENTRE BOTÕES */
-.btn-primary + .btn-secondary {
+.btn-primary+.btn-secondary {
     margin-top: 15px;
 }

@@ -2,19 +2,18 @@ class Auth {
     constructor() {
         this.verificationInProgress = false;
         this.verificationCount = 0;
-        this.maxVerifications = 3; // Limite máximo de verificações
+        this.maxVerifications = 3; 
     }
 
     async verificarSessao() {
-        // Prevenir verificações excessivas
         if (this.verificationInProgress) {
-            console.log("⚠️ Verificação já em andamento, aguardando...");
+            console.log("⚠️Verificação já em andamento, aguardando...");
             return;
         }
 
         this.verificationCount++;
         if (this.verificationCount > this.maxVerifications) {
-            console.log("🛑 Limite de verificações atingido, parando...");
+            console.log("🛑Limite de verificações atingido, parando...");
             return;
         }
 
@@ -24,12 +23,11 @@ class Auth {
             const token = localStorage.getItem('jwtToken');
             const currentPage = window.location.pathname;
             
-            console.log(`🔍 Verificação ${this.verificationCount} - Página: ${currentPage}, Token: ${token ? 'Encontrado' : 'Não encontrado'}`);
+            console.log(`Verificação ${this.verificationCount} - Página: ${currentPage}, Token: ${token ? 'Encontrado' : 'Não encontrado'}`);
 
-            // Se estamos na página de login
             if (currentPage.includes('login-admin.html') || currentPage.endsWith('/login-admin.html')) {
                 if (token) {
-                    console.log("🔐 Token encontrado na página de login, validando...");
+                    console.log("Token encontrado na página de login, validando...");
                     const isValid = await this.validarToken(token);
                     if (isValid) {
                         console.log("✅ Token válido! Redirecionando para painel...");
@@ -40,23 +38,21 @@ class Auth {
                         this.limparStorage();
                     }
                 } else {
-                    console.log("ℹ️  Nenhum token encontrado - Usuário precisa fazer login");
-                    // Não faz nada - usuário deve fazer login manualmente
+                    console.log("Nenhum token encontrado - Usuário precisa fazer login");
                 }
                 return;
             }
 
-            // Se estamos no painel admin
             if (currentPage.includes('PainelADM.html')) {
                 if (!token) {
-                    console.log("🚫 Acesso negado: nenhum token encontrado no painel");
+                    console.log("Acesso negado: nenhum token encontrado no painel");
                     this.redirectToLogin();
                     return;
                 }
 
                 const isValid = await this.validarToken(token);
                 if (!isValid) {
-                    console.log("🚫 Token inválido ou expirado no painel");
+                    console.log("Token inválido ou expirado no painel");
                     this.redirectToLogin();
                     return;
                 }
@@ -71,13 +67,13 @@ class Auth {
             }
         } finally {
             this.verificationInProgress = false;
-            console.log("🏁 Verificação de sessão concluída");
+            console.log("Verificação de sessão concluída");
         }
     }
 
     async validarToken(token) {
         try {
-            console.log("🔄 Validando token no servidor...");
+            console.log("Validando token no servidor...");
             const response = await fetch("http://localhost:8080/auth/validate", {
                 method: "POST",
                 headers: {
@@ -105,23 +101,18 @@ class Auth {
     redirectToLogin() {
         console.log("🔄 Redirecionando para página de login...");
         this.limparStorage();
-        // Usar replace para evitar histórico
         window.location.replace('login-admin.html');
     }
 
     limparStorage() {
         localStorage.removeItem('jwtToken');
         localStorage.removeItem('userData');
-        console.log("🧹 Storage limpo");
+        console.log("Storage limpo");
     }
 }
 
-// Inicializar apenas uma vez
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("🚀 Inicializando sistema de autenticação...");
+    console.log("Inicializando sistema de autenticação...");
     const auth = new Auth();
     auth.verificarSessao();
-    
-    // Não chamar verificarSessao() novamente automaticamente
-    // O usuário deve interagir (fazer login) para continuar
 });

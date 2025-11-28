@@ -14,7 +14,6 @@ body {
   min-height: 100vh;
 }
 
-/* CONTAINER CENTRALIZADO */
 .container {
   display: flex;
   flex-direction: column;
@@ -29,7 +28,6 @@ h1 {
   text-shadow: 2px 2px 8px black;
 }
 
-/* FORMULÁRIO CENTRALIZADO */
 .Formulario {
   max-width: 800px;
   margin: 0 auto;
@@ -44,12 +42,12 @@ h1 {
 .card {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: none;
-  background: #8B4513 !important; /* Marrom principal */
+  background: #8B4513 !important;
 }
 
 .card-header {
   border-radius: 10px 10px 0 0 !important;
-  background: #6B3A1A !important; /* Marrom mais escuro para o header */
+  background: #6B3A1A !important;
   color: white !important;
   border-bottom: 2px solid #5A2D0C;
 }
@@ -60,35 +58,34 @@ h1 {
 }
 
 .card-body {
-  background: #F5F5DC !important; /* Bege claro para o corpo */
+  background: #F5F5DC !important;
 }
 
-/* BOTÕES COM TEMA MARROM */
 .btn-consultar {
   padding: 0.75rem 1.5rem;
   font-weight: 600;
-  background-color: #8B4513 !important; /* Marrom saddlebrown */
+  background-color: #8B4513 !important;
   border-color: #8B4513 !important;
   color: white !important;
 }
 
 .btn-consultar:hover,
 .btn-consultar:focus {
-  background-color: #A0522D !important; /* Marrom sienna mais claro */
+  background-color: #A0522D !important;
   border-color: #A0522D !important;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(139, 69, 19, 0.3);
 }
 
 .btn-secondary {
-  background-color: #5A3B2A !important; /* Marrom escuro */
+  background-color: #5A3B2A !important;
   border-color: #5A3B2A !important;
   color: white !important;
 }
 
 .btn-secondary:hover,
 .btn-secondary:focus {
-  background-color: #704B36 !important; /* Marrom escuro mais claro */
+  background-color: #704B36 !important;
   border-color: #704B36 !important;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(90, 59, 42, 0.3);
@@ -104,9 +101,8 @@ h1 {
   border-color: #704b36 !important;
 }
 
-/* FORMULÁRIOS */
 .form-label {
-  color: #5A3B2A !important; /* Marrom escuro para labels */
+  color: #5A3B2A !important;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
@@ -123,7 +119,7 @@ h1 {
 
 .form-control:read-only {
   background-color: #f8f9fa !important;
-  border-color: #D2B48C !important; /* Marrom tan */
+  border-color: #D2B48C !important;
   color: #5A3B2A !important;
 }
 
@@ -134,41 +130,40 @@ h1 {
 }
 
 .form-text {
-  color: #8B4513 !important; /* Marrom para texto de ajuda */
+  color: #8B4513 !important;
 }
 
-/* ALERTAS COM TEMA MARROM */
 .alert-success {
-  background-color: #D2B48C !important; /* Marrom tan claro */
+  background-color: #D2B48C !important;
   border-color: #8B4513 !important;
   color: #5A3B2A !important;
 }
 
 .alert-danger {
-  background-color: #F4A460 !important; /* Marrom sandybrown */
+  background-color: #F4A460 !important;
   border-color: #8B4513 !important;
   color: #5A3B2A !important;
 }
 
 .alert-warning {
-  background-color: #DEB887 !important; /* Marrom burlywood */
+  background-color: #DEB887 !important;
   border-color: #8B4513 !important;
   color: #5A3B2A !important;
 }
 
 .alert-info {
-  background-color: #D2B48C !important; /* Marrom tan */
+  background-color: #D2B48C !important;
   border-color: #8B4513 !important;
   color: #5A3B2A !important;
 }
 
-/* SPINNER COM TEMA MARROM */
 .spinner-border.text-primary {
-  color: #8B4513 !important; /* Marrom no spinner */
+  color: #8B4513 !important;
 }
 
-/* Animações suaves */
-.card, .btn, .form-control {
+.card,
+.btn,
+.form-control {
   transition: all 0.3s ease;
 }
 
@@ -176,26 +171,25 @@ h1 {
   transform: translateY(-1px);
 }
 
-/* RESULTADO BEM ALINHADO */
 #resultado {
   margin-top: 10px;
   padding: 20px;
   border-radius: 15px;
-  background-color: #8b6a3f !important; /* Marrom dourado */
+  background-color: #8b6a3f !important;
   color: white;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
-  width: 100%;          /* <- garante que não passa da borda */
-  box-sizing: border-box; /* <- inclui padding na largura */
+  width: 100%;
+  box-sizing: border-box;
   border: 2px solid #6B3A1A !important;
 }
 
 #resultado .card-header {
-  background: #5A3B2A !important; /* Marrom mais escuro */
+  background: #5A3B2A !important;
   border-bottom: 2px solid #4A2B1A;
 }
 
 #resultado .card-body {
-  background: #F5F5DC !important; /* Bege claro */
+  background: #F5F5DC !important;
 }
 
 #resultado p {
@@ -213,8 +207,8 @@ h1 {
 }
 
 #resultado input {
-  width: 100%;            /* <- nunca passa da div */
-  box-sizing: border-box;  /* <- impede overflow */
+  width: 100%;
+  box-sizing: border-box;
   background: rgba(255, 255, 255, 0.9) !important;
   color: black !important;
   border: 1px solid #8B4513 !important;
@@ -242,34 +236,33 @@ h1 {
 .Formulario {
   width: 420px;
   max-width: 420px;
-  box-sizing: border-box; /* impede estouro */
+  box-sizing: border-box;
 }
 
-/* INPUT GROUP COM TEMA MARROM */
 .input-group-text {
   background-color: #8B4513 !important;
   border-color: #8B4513 !important;
   color: white !important;
 }
 
-/* Responsividade adicional */
 @media (max-width: 768px) {
   .container-fluid {
     padding: 1rem;
   }
-  
+
   .card-body {
     padding: 1rem;
   }
-  
+
   .row.g-3 {
     margin: 0 -0.5rem;
   }
-  
-  .col-md-6, .col-12 {
+
+  .col-md-6,
+  .col-12 {
     padding: 0 0.5rem;
   }
-  
+
   .Formulario {
     width: 100%;
     max-width: 100%;
@@ -277,12 +270,10 @@ h1 {
   }
 }
 
-/* ESTILOS PARA FEATHER ICONS */
 [data-feather] {
   color: inherit;
 }
 
-/* MELHORIAS VISUAIS */
 .card {
   border-radius: 10px !important;
   overflow: hidden;
@@ -299,7 +290,6 @@ h1 {
   border-radius: 6px !important;
 }
 
-/* SOMBRAS E EFEITOS */
 .card {
   box-shadow: 0 6px 15px rgba(139, 69, 19, 0.2) !important;
 }

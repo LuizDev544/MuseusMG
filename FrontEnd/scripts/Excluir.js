@@ -4,12 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnExcluir = document.getElementById("btnExcluir");
     const loadingSpinner = document.getElementById("loadingSpinner");
 
-    // Inicializar feather icons
     if (typeof feather !== 'undefined') {
         feather.replace();
     }
 
-    // Configurar ProtectedAuth
     if (typeof ProtectedAuth !== 'undefined') {
         const protectedAuth = new ProtectedAuth();
         protectedAuth.onAuthenticationSuccess = (username) => {
@@ -26,21 +24,18 @@ document.addEventListener("DOMContentLoaded", () => {
     async function excluirEvento() {
         const eventId = document.getElementById("eventId").value.trim();
 
-        // Validação do ID
         if (!eventId || eventId <= 0) {
             mostrarMensagem("Insira um ID válido (maior que 0).", "error");
             return;
         }
 
-        // Confirmação de exclusão
         const confirmar = confirm(`⚠️ ATENÇÃO: Tem certeza que deseja excluir permanentemente o evento ID ${eventId}?\n\nEsta ação não pode ser desfeita.`);
-        
+
         if (!confirmar) {
             mostrarMensagem("Exclusão cancelada.", "warning");
             return;
         }
 
-        // Mostrar loading
         mostrarLoading(true);
 
         try {
@@ -54,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 mostrarMensagem(`✅ Evento ID ${eventId} excluído com sucesso!`, "success");
                 form.reset();
-            } 
+            }
             else if (response.status === 404) {
                 mostrarMensagem("❌ Evento não encontrado. Verifique o ID informado.", "warning");
             }
@@ -71,12 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (error) {
             console.error("Erro na exclusão:", error);
-            
+
             if (error.message.includes('Acesso negado') || error.message.includes('Não autorizado')) {
-                mostrarMensagem("🔐 Sessão expirada. Redirecionando para login...", "error");
+                mostrarMensagem("Sessão expirada. Redirecionando para login...", "error");
                 setTimeout(() => window.location.href = 'login-admin.html', 2000);
             } else if (error.message.includes('Token')) {
-                mostrarMensagem("🔐 Erro de autenticação. Redirecionando...", "error");
+                mostrarMensagem("Erro de autenticação. Redirecionando...", "error");
                 setTimeout(() => window.location.href = 'login-admin.html', 2000);
             } else {
                 mostrarMensagem("❌ Erro: não foi possível conectar ao servidor.", "error");
@@ -88,11 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function mostrarMensagem(texto, tipo = "info") {
         mensagem.textContent = texto;
-        
-        // Resetar classes
+
         mensagem.className = 'mt-3 text-center fw-bold';
-        
-        // Adicionar classes baseadas no tipo
+
         switch (tipo) {
             case "success":
                 mensagem.classList.add('text-success');
@@ -107,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 mensagem.classList.add('text-info');
         }
 
-        // Auto-esconder mensagens de sucesso após 5 segundos
         if (tipo === "success") {
             setTimeout(() => {
                 mensagem.textContent = "";
@@ -120,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (loadingSpinner) {
             loadingSpinner.classList.toggle('d-none', !mostrar);
         }
-        
+
         if (btnExcluir) {
             btnExcluir.disabled = mostrar;
             if (mostrar) {
@@ -134,7 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Prevenir submissão com Enter no campo de ID (para evitar exclusões acidentais)
     document.getElementById("eventId").addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
             e.preventDefault();

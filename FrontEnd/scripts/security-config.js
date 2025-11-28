@@ -1,4 +1,3 @@
-// FrontEnd/scripts/auth/security-config.js
 class SecurityConfig {
     static get BASE_URL() {
         return 'http://localhost:8080';
@@ -20,7 +19,7 @@ class SecurityConfig {
 
     static async makeAuthenticatedRequest(url, options = {}) {
         const token = localStorage.getItem('jwtToken');
-        
+
         if (!token) {
             throw new Error('Token de autenticação não encontrado');
         }
@@ -34,7 +33,7 @@ class SecurityConfig {
         };
 
         const response = await fetch(url, { ...defaultOptions, ...options });
-        
+
         if (response.status === 403) {
             throw new Error('Acesso negado - token inválido ou expirado');
         }
@@ -63,5 +62,4 @@ class SecurityConfig {
     }
 }
 
-// Tornar global para compatibilidade
 window.SecurityConfig = SecurityConfig;

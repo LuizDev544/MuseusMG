@@ -17,7 +17,6 @@ public class EmailService {
 
     public boolean enviarEmailBoasVindas(String destinatario) {
         try {
-            // Validação básica do email
             if (destinatario == null || !destinatario.contains("@")) {
                 return false;
             }
@@ -27,7 +26,7 @@ public class EmailService {
 
             helper.setTo(destinatario);
             helper.setSubject("Obrigado por visitar nosso site!");
-            helper.setFrom("luizfernando.carrupt@gmail.com"); // Adicione o remetente
+            helper.setFrom("luizfernando.carrupt@gmail.com"); 
             
             String html = """
                 <div style="font-family: Arial; padding: 20px;">

@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("🔍 Consulta.js carregado - Inicializando...");
-    
-    // Inicializar feather icons
+    console.log("Consulta.js carregado - Inicializando...");
+
     if (typeof feather !== 'undefined') {
         feather.replace();
     }
 
-    // Configurar ProtectedAuth
     if (typeof ProtectedAuth !== 'undefined') {
         const protectedAuth = new ProtectedAuth();
         protectedAuth.onAuthenticationSuccess = (username) => {
@@ -15,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
         protectedAuth.init();
     }
 
-    // Configurar evento do formulário
     const form = document.getElementById('consultaForm');
     if (form) {
         form.addEventListener('submit', function (e) {
@@ -24,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Configurar evento Enter no campo de ID
     const idInput = document.getElementById('idmuseu');
     if (idInput) {
         idInput.addEventListener('keypress', function (e) {
@@ -42,27 +38,24 @@ async function consultarMuseu() {
     const id = document.getElementById('idmuseu').value.trim();
     const btnConsultar = document.querySelector('.btn-consultar');
 
-    console.log("🔎 Iniciando consulta para ID:", id);
+    console.log(" Iniciando consulta para ID:", id);
 
-    // Validação do ID
     if (!id || id < 1) {
         mostrarStatus("⚠️ Insira um ID válido (maior que 0).", "warning");
         return;
     }
 
-    // Mostrar loading
     mostrarLoading(true);
     if (btnConsultar) {
         btnConsultar.disabled = true;
         btnConsultar.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Consultando...';
     }
 
-    // Esconder resultado anterior
     document.getElementById('resultado').classList.add('d-none');
 
     try {
         const url = `http://localhost:8080/api/public/museus/${id}`;
-        console.log("🌐 Endpoint usado:", url);
+        console.log("Endpoint usado:", url);
 
         const resposta = await fetch(url, {
             method: 'GET',
@@ -76,15 +69,15 @@ async function consultarMuseu() {
         if (resposta.status === 200) {
             console.log("✅ Museu encontrado!");
             const museu = await resposta.json();
-            
+
             mostrarMuseu(museu);
             mostrarStatus(`✅ Museu ID ${id} encontrado com sucesso!`, "success");
-            
+
         } else if (resposta.status === 404) {
             console.log("❌ Museu não encontrado!");
             mostrarStatus(`❌ Museu com ID ${id} não encontrado. Verifique o ID informado.`, "error");
             limparCampos();
-            
+
         } else {
             console.log("⚠️ Erro inesperado:", resposta.status);
             mostrarStatus(`❌ Erro ao buscar museu. Código: ${resposta.status}`, "error");
@@ -108,9 +101,8 @@ async function consultarMuseu() {
 }
 
 function mostrarMuseu(museu) {
-    console.log("📌 Preenchendo formulário com dados do museu:", museu);
-    
-    // Formatar dados antes de exibir
+    console.log("Preenchendo formulário com dados do museu:", museu);
+
     const museuFormatado = {
         nome: museu.museu || 'Não informado',
         descricao: museu.descricaomuseu || 'Não informado',
@@ -123,7 +115,6 @@ function mostrarMuseu(museu) {
         preco: museu.preco !== null && museu.preco !== undefined ? museu.preco : 'Não informado'
     };
 
-    // Preencher campos
     document.getElementById('txtnome').value = museuFormatado.nome;
     document.getElementById('txtdescricao').value = museuFormatado.descricao;
     document.getElementById('txtabrir').value = museuFormatado.horarioAbrir;
@@ -134,21 +125,18 @@ function mostrarMuseu(museu) {
     document.getElementById('txtendereco').value = museuFormatado.endereco;
     document.getElementById('txtpreco').value = museuFormatado.preco;
 
-    // Mostrar resultado
     document.getElementById('resultado').classList.remove('d-none');
-    
+
     console.log("✅ Formulário preenchido com sucesso!");
 }
 
 function formatarHorario(horario) {
     if (!horario) return '';
-    
-    // Se já estiver no formato HH:MM, retorna como está
+
     if (typeof horario === 'string' && horario.match(/^\d{2}:\d{2}$/)) {
         return horario;
     }
-    
-    // Tenta converter outros formatos de hora
+
     try {
         const data = new Date(horario);
         if (!isNaN(data.getTime())) {
@@ -157,7 +145,7 @@ function formatarHorario(horario) {
     } catch (e) {
         console.warn("Não foi possível formatar o horário:", horario);
     }
-    
+
     return horario;
 }
 
@@ -165,7 +153,7 @@ function limparCampos() {
     console.log("🧹 Limpando campos...");
 
     const campos = [
-        'txtnome', 'txtdescricao', 'txtabrir', 'txtsair', 
+        'txtnome', 'txtdescricao', 'txtabrir', 'txtsair',
         'txttema', 'txtcapacidade', 'txtfundacao', 'txtendereco', 'txtpreco'
     ];
 
@@ -176,7 +164,6 @@ function limparCampos() {
         }
     });
 
-    // Esconder resultado
     document.getElementById('resultado').classList.add('d-none');
 }
 
@@ -190,11 +177,8 @@ function mostrarLoading(mostrar) {
 function mostrarStatus(mensagem, tipo = "info") {
     const statusElement = document.getElementById('statusMessage');
     if (!statusElement) return;
-
-    // Resetar classes
     statusElement.className = 'alert d-none';
-    
-    // Adicionar classes baseadas no tipo
+
     switch (tipo) {
         case "success":
             statusElement.classList.add('alert-success');
@@ -212,7 +196,6 @@ function mostrarStatus(mensagem, tipo = "info") {
     statusElement.textContent = mensagem;
     statusElement.classList.remove('d-none');
 
-    // Auto-esconder mensagens de sucesso após 5 segundos
     if (tipo === "success") {
         setTimeout(() => {
             statusElement.classList.add('d-none');
@@ -220,5 +203,4 @@ function mostrarStatus(mensagem, tipo = "info") {
     }
 }
 
-// Manter compatibilidade com onclick (se necessário)
 window.consultarMuseu = consultarMuseu;

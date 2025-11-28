@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastrar Evento</title>
   <link rel="stylesheet" href="Styles/Cadastro.css">
 </head>
+
 <body class="cadastro-bg">
   <div class="form-container">
     <h2 class="title">Cadastrar Novo Museu</h2>
     <form id="formCadastro" class="form-grid">
       <div class="form-group">
         <label for="NomeMuseu">Nome do Museu:</label>
-        <input type="text" id="NomeMuseu" name="museu" required> <!-- ← nome correto -->
+        <input type="text" id="NomeMuseu" name="museu" required>
       </div>
       <div class="form-group full-width">
         <label for="DescicaoDoMuseu">Descrição:</label>
-        <textarea id="DescicaoDoMuseu" name="descricaomuseu" rows="3" required></textarea> <!-- ← nome correto -->
+        <textarea id="DescicaoDoMuseu" name="descricaomuseu" rows="3" required></textarea>
       </div>
       <div class="form-group">
         <label for="HorarioDeAbrir">Horário de Abrir:</label>
-        <input type="time" id="HorarioDeAbrir" name="horarioabrir" required> <!-- ← nome correto -->
+        <input type="time" id="HorarioDeAbrir" name="horarioabrir" required>
       </div>
       <div class="form-group">
         <label for="HorarioDeSair">Horário de sair:</label>
-        <input type="time" id="HorarioDeSair" name="horariosair" required> <!-- ← nome correto -->
+        <input type="time" id="HorarioDeSair" name="horariosair" required>
       </div>
       <div class="form-group">
         <label for="TemaDoMuseu">Tema:</label>
-        <input type="text" id="TemaDoMuseu" name="tema" required> <!-- ← nome correto -->
+        <input type="text" id="TemaDoMuseu" name="tema" required>
       </div>
       <div class="form-group">
         <label for="CapacidadeDePessoas">Capacidade de Pessoas:</label>
-        <input type="number" id="CapacidadeDePessoas" name="capacidade" min="1" required> <!-- ← nome correto -->
+        <input type="number" id="CapacidadeDePessoas" name="capacidade" min="1" required>
       </div>
       <div class="form-group">
         <label for="fundacao">Fundação:</label>
@@ -54,25 +56,24 @@
     <p id="msg" class="message"></p>
   </div>
 
-  <!-- Scripts NA ORDEM CORRETA -->
   <script src="scripts/security-config.js"></script>
   <script src="scripts/protected-auth.js"></script>
   <script src="scripts/Cadastro.js"></script>
 
   <script>
-  class CadastroAuth extends ProtectedAuth {
+    class CadastroAuth extends ProtectedAuth {
       onAuthenticationSuccess(username) {
-          console.log(`✅ Página de cadastro carregada para: ${username}`);
-          // Inicializar funcionalidades de cadastro
-          if (typeof cadastrarMuseu !== 'undefined') {
-              cadastrarMuseu.init();
-          }
+        console.log(`✅ Página de cadastro carregada para: ${username}`);
+        if (typeof cadastrarMuseu !== 'undefined') {
+          cadastrarMuseu.init();
+        }
       }
-  }
+    }
 
-  document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
       new CadastroAuth().init();
-  });
+    });
   </script>
 </body>
+
 </html>

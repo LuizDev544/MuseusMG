@@ -33,7 +33,7 @@ public class AuthService {
     public String getRoleFromDatabase(String email) {
         Admin admin = adminRepository.findByEmail(email);
         if (admin != null) {
-            return admin.getRole(); // Retorna "ROLE_ADMIN" do banco
+            return admin.getRole();
         }
         return null;
     }

@@ -1,5 +1,5 @@
 body {
-  background-image: url('../Imagens/WallpaperPapel.jpg'); 
+  background-image: url('../Imagens/WallpaperPapel.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -10,7 +10,6 @@ body {
   min-height: 100vh;
 }
 
-/* TOP BAR - MENU LATERAL */
 .top-bar {
   position: fixed;
   top: 0;
@@ -76,7 +75,6 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* CONTEÚDO PRINCIPAL */
 .dashboard-container {
   margin-left: 280px;
   margin-right: 20px;
@@ -89,7 +87,6 @@ body {
   margin-left: 260px;
 }
 
-/* CARD PRINCIPAL */
 .dashboard-container .card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
@@ -109,7 +106,6 @@ body {
   font-size: 1.2rem;
 }
 
-/* TABELA */
 .table-responsive {
   border-radius: 0 0 16px 16px;
   overflow: hidden;
@@ -145,7 +141,6 @@ thead.custom-header {
   background-color: rgba(190, 130, 90, 0.05);
 }
 
-/* BOTÕES NA TABELA */
 .btn-sm {
   padding: 0.4rem 0.8rem;
   font-size: 0.8rem;
@@ -166,102 +161,96 @@ thead.custom-header {
   box-shadow: 0 3px 8px rgba(255, 193, 7, 0.3);
 }
 
-/* FORMULÁRIO DE EDIÇÃO - CORRIGIDO */
 #overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 9998;
-    display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9998;
+  display: none;
 }
 
 #overlay.show {
-    display: block;
+  display: block;
 }
 
 #formEdicao {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 800px;
-    max-height: 85vh;
-    background: white;
-    border: 3px solid #d1410c;
-    border-radius: 16px;
-    padding: 2rem;
-    z-index: 9999;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-    display: none;
-    overflow-y: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  background: white;
+  border: 3px solid #d1410c;
+  border-radius: 16px;
+  padding: 2rem;
+  z-index: 9999;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  display: none;
+  overflow-y: auto;
 }
 
 #formEdicao.show {
-    display: block;
+  display: block;
 }
 
-/* BOTÃO FECHAR */
 .btn-close-form {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    color: #d1410c;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #d1410c;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
 }
 
 .btn-close-form:hover {
-    background: #f8f9fa;
-    transform: scale(1.1);
+  background: #f8f9fa;
+  transform: scale(1.1);
 }
 
-/* FORMULÁRIO DE EDIÇÃO - CORRIGIDO */
 #overlay {
-    display: none !important;
+  display: none !important;
 }
 
 #formEdicao {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 800px;
-    max-height: 85vh;
-    background: white;
-    border: 3px solid #d1410c;
-    border-radius: 16px;
-    padding: 2rem;
-    z-index: 10000;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    display: none;
-    overflow-y: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  background: white;
+  border: 3px solid #d1410c;
+  border-radius: 16px;
+  padding: 2rem;
+  z-index: 10000;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  display: none;
+  overflow-y: auto;
 }
 
-/* Garantir que o formulário seja clicável */
 #formEdicao * {
-    pointer-events: auto;
+  pointer-events: auto;
 }
 
-/* Overlay não deve ser clicável - só para fundo */
 #overlay {
-    pointer-events: auto; /* Isso permite que clicks passem através do overlay */
+  pointer-events: auto;
 }
 
-/* MENSAGENS */
 #msgEdicao {
   font-size: 0.9rem;
   font-weight: 600;
@@ -271,7 +260,6 @@ thead.custom-header {
   border-radius: 6px;
 }
 
-/* TÍTULOS */
 .display-5.fw-bold.texto-laranja {
   color: #ffffff;
   font-weight: bold;
@@ -308,7 +296,6 @@ thead.custom-header {
   transition: opacity 1s ease, transform 1s ease;
 }
 
-/* RESPONSIVIDADE */
 @media (max-width: 1024px) {
   .dashboard-container {
     margin-left: 280px;
@@ -378,7 +365,6 @@ thead.custom-header {
   }
 }
 
-/* SCROLLBAR PERSONALIZADA */
 #formEdicao::-webkit-scrollbar {
   width: 8px;
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="../FrontEnd/Styles/auth.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body class="auth-body">
     <div class="auth-container">
         <div class="auth-card">
@@ -76,19 +78,20 @@
     <script src="scripts/admin-auth.js"></script>
 
     <script>
-    function debugCheckAuth() {
-        const token = localStorage.getItem('jwtToken');
-        const userData = localStorage.getItem('userData');
-        console.log('🔍 Debug - Token:', token);
-        console.log('🔍 Debug - UserData:', userData);
-        alert(`Token: ${token ? 'EXISTE' : 'NÃO EXISTE'}\nUserData: ${userData || 'NÃO EXISTE'}`);
-    }
+        function debugCheckAuth() {
+            const token = localStorage.getItem('jwtToken');
+            const userData = localStorage.getItem('userData');
+            console.log('Debug - Token:', token);
+            console.log('Debug - UserData:', userData);
+            alert(`Token: ${token ? 'EXISTE' : 'NÃO EXISTE'}\nUserData: ${userData || 'NÃO EXISTE'}`);
+        }
 
-    function debugClearStorage() {
-        localStorage.clear();
-        console.log('🧹 Storage limpo');
-        alert('Storage limpo!');
-    }
+        function debugClearStorage() {
+            localStorage.clear();
+            console.log('🧹 Storage limpo');
+            alert('Storage limpo!');
+        }
     </script>
 </body>
+
 </html>

@@ -39,7 +39,6 @@ body {
     border-top-right-radius: 6px;
 }
 
-/* NAVBAR */
 .navbar {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -131,7 +130,6 @@ body {
     cursor: pointer;
 }
 
-/* HERO SECTION */
 .hero {
     height: 50vh;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -213,7 +211,6 @@ body {
     transform: translateY(-3px);
 }
 
-/* CAROUSEL */
 .carousel-section {
     width: 100%;
     margin: 60px 0;
@@ -269,12 +266,18 @@ body {
     opacity: 0.9;
 }
 
-/* Slide backgrounds */
-.s1 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../Imagens/MuseuDaArteContemporanea.jpg'); }
-.s2 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../Imagens/MuseuDaImigracao.jpg'); }
-.s3 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../Imagens/MuseuDoIpiranga.webp'); }
+.s1 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../Imagens/MuseuDaArteContemporanea.jpg');
+}
 
-/* Manual Navigation */
+.s2 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../Imagens/MuseuDaImigracao.jpg');
+}
+
+.s3 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../Imagens/MuseuDoIpiranga.webp');
+}
+
 .nav-manual {
     position: absolute;
     width: 100%;
@@ -298,25 +301,24 @@ body {
     background: rgba(255, 255, 255, 0.5);
 }
 
-#slide1:checked ~ .s1,
-#slide2:checked ~ .s2,
-#slide3:checked ~ .s3 {
+#slide1:checked~.s1,
+#slide2:checked~.s2,
+#slide3:checked~.s3 {
     opacity: 2;
 }
 
-#slide1:checked ~ .s1 .slide-content,
-#slide2:checked ~ .s2 .slide-content,
-#slide3:checked ~ .s3 .slide-content {
+#slide1:checked~.s1 .slide-content,
+#slide2:checked~.s2 .slide-content,
+#slide3:checked~.s3 .slide-content {
     transform: translateY(0);
 }
 
-#slide1:checked ~ .nav-manual label:nth-child(1),
-#slide2:checked ~ .nav-manual label:nth-child(2),
-#slide3:checked ~ .nav-manual label:nth-child(3) {
+#slide1:checked~.nav-manual label:nth-child(1),
+#slide2:checked~.nav-manual label:nth-child(2),
+#slide3:checked~.nav-manual label:nth-child(3) {
     background: white;
 }
 
-/* SECTION TITLE */
 .section-title {
     font-size: 2.5rem;
     font-family: 'Playfair Display', serif;
@@ -338,7 +340,6 @@ body {
     border-radius: 2px;
 }
 
-/* MUSEUM CARDS */
 .museums {
     padding: 60px 5%;
 }
@@ -412,7 +413,6 @@ body {
     font-weight: 500;
 }
 
-/* FEATURES SECTION */
 .features {
     padding: 80px 5%;
     background: white;
@@ -460,7 +460,6 @@ body {
     color: var(--gray);
 }
 
-/* NEWSLETTER */
 .newsletter {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     padding: 80px 5%;
@@ -512,7 +511,6 @@ body {
     background: #EAB308;
 }
 
-/* FOOTER */
 .footer {
     background: var(--dark);
     color: white;
@@ -582,26 +580,31 @@ body {
     color: var(--gray-light);
 }
 
-/* ANIMATIONS */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .fade-in {
     animation: fadeIn 0.7s ease forwards;
 }
 
-/* RESPONSIVE DESIGN */
 @media (max-width: 992px) {
     .hero h1 {
         font-size: 2.8rem;
     }
-    
+
     .slide h2 {
         font-size: 2.2rem;
     }
-    
+
     .section-title {
         font-size: 2rem;
     }
@@ -611,33 +614,33 @@ body {
     .navbar nav {
         display: none;
     }
-    
+
     .mobile-menu-btn {
         display: block;
     }
-    
+
     .hero h1 {
         font-size: 2.2rem;
     }
-    
+
     .hero-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .btn {
         width: 200px;
         text-align: center;
     }
-    
+
     .slide h2 {
         font-size: 1.8rem;
     }
-    
+
     .slide-content {
         padding: 30px 20px;
     }
-    
+
     .newsletter-form {
         flex-direction: column;
     }
@@ -647,43 +650,48 @@ body {
     .navbar {
         padding: 15px 20px;
     }
-    
+
     .hero {
         height: 70vh;
     }
-    
+
     .hero h1 {
         font-size: 1.8rem;
     }
-    
+
     .carousel {
         height: 400px;
     }
-    
+
     .section-title {
         font-size: 1.8rem;
     }
-    
-    .museums, .features {
+
+    .museums,
+    .features {
         padding: 40px 20px;
     }
 }
 
-/* Museum Cards Styles */
-.loading-message, .no-museums, .error-message {
+.loading-message,
+.no-museums,
+.error-message {
     grid-column: 1 / -1;
     text-align: center;
     padding: 60px 20px;
     color: var(--gray);
 }
 
-.loading-message i, .no-museums i, .error-message i {
+.loading-message i,
+.no-museums i,
+.error-message i {
     font-size: 3rem;
     margin-bottom: 20px;
     color: var(--primary);
 }
 
-.no-museums h3, .error-message h3 {
+.no-museums h3,
+.error-message h3 {
     margin-bottom: 10px;
     color: var(--dark);
 }
@@ -747,7 +755,6 @@ body {
     color: white;
 }
 
-/* Modal Styles */
 .museum-modal {
     position: fixed;
     top: 0;
@@ -774,8 +781,15 @@ body {
 }
 
 @keyframes modalFadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .close-modal {
@@ -882,21 +896,20 @@ body {
     justify-content: flex-end;
 }
 
-/* Responsive Design for Modal */
 @media (max-width: 768px) {
     .modal-body {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .modal-image {
         height: 200px;
     }
-    
+
     .modal-footer {
         flex-direction: column;
     }
-    
+
     .card-footer {
         flex-direction: column;
         gap: 15px;
@@ -908,7 +921,7 @@ body {
     .modal-content {
         margin: 10px;
     }
-    
+
     .modal-header,
     .modal-body,
     .modal-footer {
@@ -935,12 +948,12 @@ body {
     font-size: 0.9rem;
 }
 
-.filter-btn.active, .filter-btn:hover {
+.filter-btn.active,
+.filter-btn:hover {
     background: var(--primary);
     color: white;
 }
 
-/* Admin Modal Styles */
 .admin-modal {
     position: fixed;
     top: 0;
@@ -1044,7 +1057,6 @@ body {
     background: var(--primary-dark);
 }
 
-/* Error States */
 .form-group input:invalid,
 .form-group select:invalid,
 .form-group textarea:invalid {
@@ -1063,80 +1075,82 @@ body {
 }
 
 .search-container {
-  width: 100%;
-  display: flex;
-  justify-content: center; 
-  align-items: center;    
-  padding: 30px 16px;
-  box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 16px;
+    box-sizing: border-box;
 }
 
 .search-container form {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 720px;    
-  min-width: 280px;      
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-  padding: 8px;
-  border-radius: 14px;
-  background: #ffedd5;
-  box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 720px;
+    min-width: 280px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    padding: 8px;
+    border-radius: 14px;
+    background: #ffedd5;
+    box-sizing: border-box;
 }
 
 .search-container input[type="search"] {
-  flex: 1 1 auto;
-  border: 0;
-  outline: 0;
-  padding: 12px 14px;
-  font-size: 1rem;
-  border-radius: 10px;
-  background: transparent;
+    flex: 1 1 auto;
+    border: 0;
+    outline: 0;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border-radius: 10px;
+    background: transparent;
 }
 
 .search-container .divider {
-  width: 1px;
-  height: 36px;
-  background: rgba(0,0,0,0.06);
-  border-radius: 1px;
+    width: 1px;
+    height: 36px;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 1px;
 }
 
 .search-container button {
-  flex: 0 0 auto;
-  padding: 10px 18px;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform .18s ease, box-shadow .18s ease;
+    flex: 0 0 auto;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease;
 }
 
 .search-container button:hover,
 .search-container button:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(220,53,69,0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(220, 53, 69, 0.12);
 }
 
 .search-container input[type="search"]:focus {
-  box-shadow: 0 6px 18px rgba(220,53,69,0.12);
-  border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(220, 53, 69, 0.12);
+    border-radius: 10px;
 }
 
 @media (max-width: 480px) {
-  .search-container form {
-    flex-direction: column;
-    gap: 8px;
-    padding: 12px;
-  }
+    .search-container form {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+    }
 
-  .search-container .divider { display:none; }
+    .search-container .divider {
+        display: none;
+    }
 
-  .search-container input[type="search"] {
-    width: 100%;
-    padding: 12px;
-  }
+    .search-container input[type="search"] {
+        width: 100%;
+        padding: 12px;
+    }
 
-  .search-container button {
-    width: 100%;
-  }
+    .search-container button {
+        width: 100%;
+    }
 }

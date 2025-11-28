@@ -1,4 +1,3 @@
-// FrontEnd/scripts/museus/listar-museu.js
 class ListarMuseu {
     constructor() {
         this.apiUrl = 'http://localhost:8080/api/admin/museus';
@@ -11,7 +10,7 @@ class ListarMuseu {
     async carregarMuseus() {
         try {
             const token = localStorage.getItem('jwtToken');
-            
+
             if (!token) {
                 console.error('❌ Token JWT não encontrado');
                 return;
@@ -33,7 +32,7 @@ class ListarMuseu {
 
             const museus = await response.json();
             this.exibirMuseus(museus);
-            
+
         } catch (error) {
             console.error('❌ Erro ao buscar museus:', error);
             this.mostrarMensagem('Erro ao carregar museus: ' + error.message, 'error');
@@ -78,7 +77,7 @@ class ListarMuseu {
             botao.addEventListener('click', (e) => {
                 const id = e.target.getAttribute('data-id');
                 console.log(`🔘 Botão Editar clicado: ID ${id}`);
-                
+
                 if (typeof window.abrirEdicao === 'function') {
                     window.abrirEdicao(id);
                 } else if (typeof window.editarMuseuManager !== 'undefined' && window.editarMuseuManager.abrirEdicao) {
@@ -88,7 +87,7 @@ class ListarMuseu {
                 }
             });
         });
-        
+
         console.log(`✅ ${botoes.length} botões de edição configurados`);
     }
 
@@ -97,7 +96,6 @@ class ListarMuseu {
     }
 }
 
-// Inicialização global
 let listarMuseu;
 
 document.addEventListener('DOMContentLoaded', () => {
